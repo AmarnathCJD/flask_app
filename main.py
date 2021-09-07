@@ -1,6 +1,7 @@
 from os import environ as e
 from os import remove
 from time import sleep
+
 from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
@@ -20,7 +21,7 @@ def ss():
     q = request.args.get("url")
     timeout = request.args.get("timeout", False)
     if not timeout.isdigit():
-      timeout = False
+        timeout = False
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
