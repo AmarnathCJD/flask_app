@@ -18,6 +18,7 @@ def redirect():
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
+    format = request.args.get("format", "png")
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
@@ -26,7 +27,6 @@ def ss():
         options.add_argument("--no-sandbox")
         driver = webdriver.Chrome(chrome_options=options)
         driver.get(q)
-        driver.set_window_size(1280 + 100, 720 + 100)
         img = driver.get_screenshot_as_png()
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
