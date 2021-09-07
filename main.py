@@ -35,12 +35,14 @@ def ss():
     return send_file("image.png", mimetype="image/png")
     remove("image.png")
 
+
 @app.route("/google")
 def google_search():
- query = request.args.get("query")
- if not query:
+    query = request.args.get("query")
+    if not query:
         return jsonify({"status": 400, "error": "query parameter not provided."})
- return jsonify ({"status": "ok", "message": "soon"})
+    return jsonify({"status": "ok", "message": "soon"})
+
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
