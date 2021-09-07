@@ -1,6 +1,6 @@
 from os import environ as e
 from os import remove
-
+from time import sleep
 from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
@@ -18,6 +18,9 @@ def redirect():
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
+    timeout = request.args.get("timeout", False)
+    if not timeout.isdigit():
+      timeout = False
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
@@ -26,6 +29,9 @@ def ss():
         options.add_argument("--no-sandbox")
         driver = webdriver.Chrome(options=options)
         driver.get(q)
+        driver.set_window_size(1280, 720)
+        if timeout:
+            sleep(timeout)
         img = driver.get_screenshot_as_png()
     except Exception as e:
         e = str(e).replace("\n", "<br>")
