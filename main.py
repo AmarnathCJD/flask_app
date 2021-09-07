@@ -1,5 +1,7 @@
 from flask import Flask
 from flask import request, jsonify
+import os
+print(os.environ.get("PORT"))
 app = Flask("neko")
 
 def ping():
