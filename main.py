@@ -2,6 +2,7 @@ from os import environ as e
 
 from flask import Flask, jsonify, redirect, request
 from selenium import webdriver
+
 app = Flask("neko")
 
 api = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
@@ -24,6 +25,7 @@ def ss():
     driver.get(url)
     rq = dir(driver)
     return jsonify({"status": "ok", "test": rq})
+
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
