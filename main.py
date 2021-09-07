@@ -26,7 +26,7 @@ def ss():
         driver.get(q)
         pq = "sucess"
     except Exception as e:
-        pq = e
+        pq = str(type(e))
     return jsonify({"status": "ok", "test": pq})
 
 
