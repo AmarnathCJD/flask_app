@@ -19,11 +19,9 @@ def redirect():
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
-    timeout = request.args.get("timeout", False)
-    if not timeout == (False or "") and not timeout.isdigit():
-        timeout = False
-    else:
-        timeout = int(timeout)
+    timeout = request.args.get("timeout", 0)
+    if not timeout.isnumeric():
+        timeout = 0
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
@@ -38,7 +36,7 @@ def ss():
         img = driver.get_screenshot_as_png()
         driver.close()
     except Exception as e:
-        e = str(e).replace("\n", "<br>")
+        e = str(e).replace("\n", "")
         return jsonify({"status": 401, "error": e})
     with open("image.png", "wb") as file:
         file.write(img)
