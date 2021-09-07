@@ -3,6 +3,8 @@ from flask import request, jsonify, redirect
 from os import environ as e
 app = Flask("neko")
 
+api = "rlx"
+
 @app.route('/')
 def redirect ():
  return redirect("https://roseloverx.me")
