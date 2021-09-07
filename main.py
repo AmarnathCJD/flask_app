@@ -1,5 +1,6 @@
-import io
-from os import environ as e, remove
+from os import environ as e
+from os import remove
+
 from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
@@ -32,6 +33,7 @@ def ss():
         file.write(img)
     return send_file("image.png", mimetype="image/png")
     remove("image.png")
+
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
