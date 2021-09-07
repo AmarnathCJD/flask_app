@@ -20,7 +20,7 @@ def redirect():
 def ss():
     q = request.args.get("url")
     timeout = request.args.get("timeout", False)
-    if not timeout == (False or '') and not timeout.isdigit():
+    if not timeout == (False or "") and not timeout.isdigit():
         timeout = False
     else:
         timeout = int(timeout)
