@@ -1,5 +1,5 @@
 from os import environ as e
-
+import base64
 from flask import Flask, jsonify, redirect, request
 from selenium import webdriver
 
@@ -28,8 +28,8 @@ def ss():
         message = "success"
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
-    print(dir(img))
-    return jsonify({"status": "ok", "message": message})
+    img_base = str(base64.urlsafe_b64encode(img), "utf-8")
+    return jsonify({"status": "ok", "message": message, "image": img})
 
 
 def ping():
