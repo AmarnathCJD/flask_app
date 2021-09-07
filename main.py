@@ -23,7 +23,7 @@ def ss():
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--no-sandbox")
         driver = webdriver.Chrome(chrome_options=options)
-        driver.get(url)
+        driver.get(q)
         pq = "sucess"
     except Exception as e:
         pq = e
