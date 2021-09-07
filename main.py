@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import request, jsonify
-import os
-print(os.environ.get("PORT"))
+from os import environ as e
 app = Flask("neko")
 
 def ping():
@@ -9,5 +8,4 @@ def ping():
 
 app.add_url_rule("/ping", "ping", ping, methods=['GET'])
 
-app.debug = True
-app.run(port=$PORT)
+app.run(host='0.0.0.0', port=e.get("PORT"), threaded=True)
