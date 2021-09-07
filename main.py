@@ -1,10 +1,10 @@
-import base64
-from os import environ as e
 import io
+from os import environ as e
 
 from flask import Flask, jsonify, redirect, request
-from selenium import webdriver
 from flask.helpers import send_file
+from selenium import webdriver
+
 app = Flask("neko")
 
 api = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
@@ -27,11 +27,11 @@ def ss():
         driver = webdriver.Chrome(chrome_options=options)
         driver.get(q)
         img = driver.get_screenshot_as_png()
-        message = "success"
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
     with io.BytesIO(img) as file:
-        return send_file(file, mimetype='image/png')
+        return send_file(file, mimetype="image/png")
+
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
