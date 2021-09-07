@@ -18,7 +18,6 @@ def redirect():
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
-    request.args.get("format", "png")
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
@@ -29,7 +28,8 @@ def ss():
         driver.get(q)
         img = driver.get_screenshot_as_png()
     except Exception as e:
-        return jsonify({"status": 401, "error": str(e)})
+        e = str(e).replace("\n", "<br>")
+        return jsonify({"status": 401, "error": e})
     with open("image.png", "wb") as file:
         file.write(img)
     return send_file("image.png", mimetype="image/png")
