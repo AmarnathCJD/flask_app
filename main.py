@@ -24,10 +24,12 @@ def ss():
         options.add_argument("--no-sandbox")
         driver = webdriver.Chrome(chrome_options=options)
         driver.get(q)
-        pq = "sucess"
+        img = driver.get_screenshot_as_png()
+        message = "success"
     except Exception as e:
-        pq = str(type(e))
-    return jsonify({"status": "ok", "test": pq})
+        return jsonify ({"status": 401, "error": str(e)})
+    print(dir(img))
+    return jsonify({"status": "ok", "message": message})
 
 
 def ping():
