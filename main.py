@@ -20,7 +20,7 @@ def redirect():
 def ss():
     q = request.args.get("url")
     timeout = request.args.get("timeout", False)
-    if not timeout == False and timeout.isdigit():
+    if not timeout == (False or '') and not timeout.isdigit():
         timeout = False
     else:
         timeout = int(timeout)
@@ -36,6 +36,7 @@ def ss():
         if timeout:
             sleep(timeout)
         img = driver.get_screenshot_as_png()
+        driver.close()
     except Exception as e:
         e = str(e).replace("\n", "<br>")
         return jsonify({"status": 401, "error": e})
