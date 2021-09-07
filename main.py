@@ -1,6 +1,5 @@
 import io
-from os import environ as e
-
+from os import environ as e, remove
 from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
@@ -29,9 +28,10 @@ def ss():
         img = driver.get_screenshot_as_png()
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
-    with io.BytesIO(open(img, "r")) as file:
-        return send_file(file, mimetype="image/png")
-
+    with open("image.png", "wb") as file:
+        file.write(img)
+    return send_file("image.png", mimetype="image/png")
+    remove("image.png")
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
