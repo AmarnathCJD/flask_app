@@ -27,7 +27,7 @@ def ss():
         img = driver.get_screenshot_as_png()
         message = "success"
     except Exception as e:
-        return jsonify ({"status": 401, "error": str(e)})
+        return jsonify({"status": 401, "error": str(e)})
     print(dir(img))
     return jsonify({"status": "ok", "message": message})
 
