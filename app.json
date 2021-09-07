@@ -1,0 +1,9 @@
+{
+ "name": "RFlask API",
+ "description": "A Multi purpose Flask API.",
+ "logo": "https://telegra.ph/file/1efa6f6fb6863691b881f.jpg",
+ "keywords": ["telegram", "flask", "api", "auth", "roseloverx"],
+ "repository": "https://github.com/AmarnathCJD/flask_app",
+ "env": {"R": {"description": "Author", "value": "RoseLoverX"}},
+ "buildpacks": [{"url": "heroku/python"}, {"url":"https://github.com/heroku/heroku-buildpack-google-chrome"}, {"url":"https://github.com/heroku/heroku-buildpack-chromedriver"}]
+}
