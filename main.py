@@ -18,7 +18,7 @@ def redirect():
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
-    format = request.args.get("format", "png")
+    request.args.get("format", "png")
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
