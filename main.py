@@ -26,14 +26,8 @@ def ss():
         options.add_argument("--no-sandbox")
         driver = webdriver.Chrome(chrome_options=options)
         driver.get(q)
+        driver.set_window_size(1280 + 100, 720 + 100)
         img = driver.get_screenshot_as_png()
-        height = driver.execute_script(
-            "return Math.max(document.body.scrollHeight, document.body.offsetHeight, document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight);"
-        )
-        width = driver.execute_script(
-            "return Math.max(document.body.scrollWidth, document.body.offsetWidth, document.documentElement.clientWidth, document.documentElement.scrollWidth, document.documentElement.offsetWidth);"
-        )
-        driver.set_window_size(width + 100, height + 100)
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
     with open("image.png", "wb") as file:
