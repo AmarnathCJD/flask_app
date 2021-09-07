@@ -18,13 +18,16 @@ def ss():
     q = request.args.get("url")
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
-    options = webdriver.ChromeOptions()
-    options.add_argument("--ignore-certificate-errors")
-    options.add_argument("--no-sandbox")
-    driver = webdriver.Chrome(chrome_options=options)
-    driver.get(url)
-    rq = dir(driver)
-    return jsonify({"status": "ok", "test": rq})
+    try:
+     options = webdriver.ChromeOptions()
+     options.add_argument("--ignore-certificate-errors")
+     options.add_argument("--no-sandbox")
+     driver = webdriver.Chrome(chrome_options=options)
+     driver.get(url)
+     pq = "sucess"
+    except Exception as e:
+     pq = e
+    return jsonify({"status": "ok", "test": pq})
 
 
 def ping():
