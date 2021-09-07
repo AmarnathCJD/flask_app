@@ -20,8 +20,10 @@ def redirect():
 def ss():
     q = request.args.get("url")
     timeout = request.args.get("timeout", False)
-    if not timeout.isdigit():
+    if not timeout == False and timeout.isdigit():
         timeout = False
+    else:
+        timeout = int(timeout)
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
