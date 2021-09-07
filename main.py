@@ -29,8 +29,8 @@ def ss():
         message = "success"
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
-    str(base64.urlsafe_b64encode(img), "utf-8")
-    return jsonify({"status": "ok", "message": message, "image": img.decode()})
+    img = str(base64.urlsafe_b64encode(img), "utf-8")
+    return jsonify({"status": "ok", "message": message, "image": img})
 
 
 def ping():
