@@ -25,7 +25,7 @@ def ss():
         options = webdriver.ChromeOptions()
         options.add_argument("--ignore-certificate-errors")
         options.add_argument("--no-sandbox")
-        driver = webdriver.Chrome(chrome_options=options)
+        driver = webdriver.Chrome(options=options)
         driver.get(q)
         img = driver.get_screenshot_as_png()
     except Exception as e:
