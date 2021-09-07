@@ -29,7 +29,7 @@ def ss():
         img = driver.get_screenshot_as_png()
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
-    with io.BytesIO(img) as file:
+    with io.BytesIO(open(img, "r")) as file:
         return send_file(file, mimetype="image/png")
 
 
