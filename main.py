@@ -1,9 +1,10 @@
 import base64
 from os import environ as e
+import io
 
 from flask import Flask, jsonify, redirect, request
 from selenium import webdriver
-
+from flask.helpers import send_file
 app = Flask("neko")
 
 api = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
@@ -29,9 +30,8 @@ def ss():
         message = "success"
     except Exception as e:
         return jsonify({"status": 401, "error": str(e)})
-    img = str(base64.urlsafe_b64encode(img), "utf-8")
-    return jsonify({"status": "ok", "message": message, "image": img})
-
+    with io.BytesIO(img) as file:
+        return send_file(file, mimetype='image/png')
 
 def ping():
     return jsonify({"status": "ok", "author": "RoseLovErX"})
