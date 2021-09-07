@@ -22,6 +22,8 @@ def ss():
     timeout = request.args.get("timeout", 0)
     if not timeout.isnumeric():
         timeout = 0
+    else:
+        timeout = int(timeout)
     if not q:
         return jsonify({"status": 400, "error": "url parameter not provided."})
     try:
