@@ -19,7 +19,8 @@ def imdb(q):
             "span",
             attrs={"class": "AggregateRatingButton__RatingScore-sc-1ll29m0-1 iTLWoV"},
         )
-    ).text or 0
+    )
+    rating = rating.text if rating else 0
     title = (soup.find("meta", attrs={"property": "twitter:title"})).get("content")
     desc = (soup.find("meta", attrs={"property": "twitter:description"})).get("content")
     genre = [x.text for x in soup.findAll("span", attrs={"class": "ipc-chip__text"})]
