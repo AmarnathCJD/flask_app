@@ -29,21 +29,28 @@ def imdb(q):
         "genre": genre,
     }
 
+
 def google_search(query, limit=5):
- url = f"https://www.google.com/search?&q={query}&num=8"
- usr_agent = {
+    url = f"https://www.google.com/search?&q={query}&num=8"
+    usr_agent = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/61.0.3163.100 Safari/537.36"
     }
- r = get(url, headers=usr_agent)
- soup = BeautifulSoup(r.text, "html.parser")
- r = soup.findAll("div", attrs={"class": "g"})
- d = soup.findAll("div", attrs={"class": "IsZvec"})
- results = []
- qp = 0
- for x, y in zip(r,d):
-  qp += 1
-  if qp > limit:
-    break
-  results.append({"title": x.find("a", href=True)["href"], "url": x.find("h3").text if x.find("h3") else "undefined", "description": y.text})
- return results
+    r = get(url, headers=usr_agent)
+    soup = BeautifulSoup(r.text, "html.parser")
+    r = soup.findAll("div", attrs={"class": "g"})
+    d = soup.findAll("div", attrs={"class": "IsZvec"})
+    results = []
+    qp = 0
+    for x, y in zip(r, d):
+        qp += 1
+        if qp > limit:
+            break
+        results.append(
+            {
+                "title": x.find("a", href=True)["href"],
+                "url": x.find("h3").text if x.find("h3") else "undefined",
+                "description": y.text,
+            }
+        )
+    return results
