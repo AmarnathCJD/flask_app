@@ -14,11 +14,9 @@ def imdb(q):
     r = get(movie)
     img = soup.find("meta", attrs={"property": "twitter:image"})
     img = img.get("content") if img else None
-    rating = (
-        soup.find(
-            "span",
-            attrs={"class": "AggregateRatingButton__RatingScore-sc-1ll29m0-1 iTLWoV"},
-        )
+    rating = soup.find(
+        "span",
+        attrs={"class": "AggregateRatingButton__RatingScore-sc-1ll29m0-1 iTLWoV"},
     )
     rating = rating.text if rating else 0
     title = (soup.find("meta", attrs={"property": "twitter:title"})).get("content")
