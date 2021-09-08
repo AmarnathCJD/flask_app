@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from requests import get
-
+import json
 
 def imdb(q):
     r = get(f"https://www.imdb.com/find?q={q}&ref_=nv_sr_sm")
