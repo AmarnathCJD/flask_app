@@ -50,7 +50,7 @@ def google_search(query, limit=5):
             {
                 "title": x.find("a", href=True)["href"],
                 "url": x.find("h3").text if x.find("h3") else "undefined",
-                "description": y.text,
+                "description": y.text if y else "",
             }
         )
     return results
