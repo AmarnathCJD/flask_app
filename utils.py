@@ -1,5 +1,3 @@
-import json
-
 from bs4 import BeautifulSoup
 from requests import get
 
@@ -24,9 +22,9 @@ def imdb(q):
     desc = (soup.find("meta", attrs={"property": "twitter:description"})).get("content")
     genre = [x.text for x in soup.findAll("span", attrs={"class": "ipc-chip__text"})]
     return {
-            "title": title,
-            "description": desc,
-            "rating": rating,
-            "poster": img,
-            "genre": genre,
-        }
+        "title": title,
+        "description": desc,
+        "rating": rating,
+        "poster": img,
+        "genre": genre,
+    }
