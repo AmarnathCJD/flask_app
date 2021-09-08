@@ -6,7 +6,7 @@ from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
 
-from utils import imdb_search, google_search
+from utils import google_search, imdb_search
 
 app = Flask("neko")
 app.config["JSON_SORT_KEYS"] = False
