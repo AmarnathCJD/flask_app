@@ -59,7 +59,7 @@ def imdb_search():
 
 
 @app.route("/google")
-def google_search():
+def google_search_query():
     query = request.args.get("query")
     limit = request.args.get("limit", "5")
     if not limit.isdigit():
