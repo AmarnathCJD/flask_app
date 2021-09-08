@@ -6,7 +6,7 @@ from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
 
-from utils import imdb
+from utils import imdb_search, google_search
 
 app = Flask("neko")
 app.config["JSON_SORT_KEYS"] = False
@@ -54,16 +54,20 @@ def imdb_search():
     q = request.args.get("title")
     if not q:
         return jsonify({"status": 400, "error": "query parameter not provided."})
-    result = imdb(q)
+    result = imdb_search(q)
     return jsonify({"status": "ok", "result": result})
 
 
 @app.route("/google")
 def google_search():
     query = request.args.get("query")
+    limit = request.args.get("limit", 5)
+    if not limit.isdigit():
+        return jsonify({"status": 400, "error": "limit is not a valid integer."})
     if not query:
         return jsonify({"status": 400, "error": "query parameter not provided."})
-    return jsonify({"status": "ok", "message": "soon"})
+    results = google_search(query, int(limit))
+    return jsonify({"status": "ok", "results": results})
 
 
 def ping():
