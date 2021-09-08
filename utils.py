@@ -48,8 +48,8 @@ def google_search(query, limit=5):
             break
         results.append(
             {
-                "title": x.find("a", href=True)["href"],
-                "url": x.find("h3").text if x.find("h3") else "undefined",
+                "title": x.find("h3").text if x.find("h3") else "undefined",
+                "url": x.find("a", href=True)["href"],
                 "description": y.text if y else "",
             }
         )
