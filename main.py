@@ -9,13 +9,15 @@ from selenium import webdriver
 from utils import imdb
 
 app = Flask("neko")
-app.config['JSON_SORT_KEYS'] = False
+app.config["JSON_SORT_KEYS"] = False
 
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
+
 
 @app.route("/")
 def redirect():
     return redirect("https://roseloverx.me")
+
 
 @app.route("/screenshot")
 def ss():
