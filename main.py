@@ -1,10 +1,12 @@
 from os import environ as e
 from os import remove
 from time import sleep
-from .utils import imdb
+
 from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
+
+from .utils import imdb
 
 app = Flask("neko")
 
@@ -45,13 +47,15 @@ def ss():
     return send_file("image.png", mimetype="image/png")
     remove("image.png")
 
+
 @app.route("/imdb")
 def imdb_search():
- q = request.args.get("title")
- if not q:
-  return jsonify({"status": 400, "error": "query parameter not provided."})
- result = imdb(q)
- return jsonify ({"status": "ok", "result": result})
+    q = request.args.get("title")
+    if not q:
+        return jsonify({"status": 400, "error": "query parameter not provided."})
+    result = imdb(q)
+    return jsonify({"status": "ok", "result": result})
+
 
 @app.route("/google")
 def google_search():
