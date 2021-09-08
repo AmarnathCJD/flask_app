@@ -6,7 +6,7 @@ from flask import Flask, jsonify, redirect, request
 from flask.helpers import send_file
 from selenium import webdriver
 
-from .utils import imdb
+from utils import imdb
 
 app = Flask("neko")
 
