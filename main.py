@@ -61,7 +61,7 @@ def imdb_search():
 @app.route("/google")
 def google_search():
     query = request.args.get("query")
-    limit = request.args.get("limit", 5)
+    limit = request.args.get("limit", "5")
     if not limit.isdigit():
         return jsonify({"status": 400, "error": "limit is not a valid integer."})
     if not query:
