@@ -23,13 +23,10 @@ def imdb(q):
     title = (soup.find("meta", attrs={"property": "twitter:title"})).get("content")
     desc = (soup.find("meta", attrs={"property": "twitter:description"})).get("content")
     genre = [x.text for x in soup.findAll("span", attrs={"class": "ipc-chip__text"})]
-    js = json.dumps(
-        {
+    return {
             "title": title,
             "description": desc,
             "rating": rating,
             "poster": img,
             "genre": genre,
         }
-    )
-    return js
