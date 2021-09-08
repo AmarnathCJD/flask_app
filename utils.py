@@ -12,6 +12,7 @@ def imdb(q):
     id = movies[0].find("a", href=True)["href"].replace("title", "").replace("/", "")
     movie = f"https://m.imdb.com/title/{id}"
     r = get(movie)
+    soup = BeautifulSoup(r.content, "html.parser")
     img = soup.find("meta", attrs={"property": "twitter:image"})
     img = img.get("content") if img else None
     rating = soup.find(
