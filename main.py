@@ -2,7 +2,7 @@ from os import environ as e
 from os import remove
 from time import sleep
 
-from flask import Flask, jsonify, redirect, request
+from flask import Flask, jsonify, request
 from flask.helpers import send_file
 from selenium import webdriver
 
@@ -112,4 +112,3 @@ class CounterView(LonaView):
 
 
 app2.run(port=e.get("PORT"), host="0.0.0.0")
-
