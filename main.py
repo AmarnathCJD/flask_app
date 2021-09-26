@@ -81,7 +81,7 @@ from lona.html import H1, HTML, Button, NumberInput, Span
 app2 = LonaApp("lona")
 
 
-@app2.route("/")
+@app.route("/")
 class CounterView(LonaView):
     def handle_request(self, request):
         counter = Span("0")
