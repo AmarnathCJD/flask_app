@@ -112,3 +112,5 @@ class CounterView(LonaView):
 
 
 app2.run(port=e.get("PORT"), host="0.0.0.0")
+# later
+# will fix lona addon
