@@ -71,8 +71,6 @@ def ping():
 
 app.add_url_rule("/ping", "ping", ping, methods=["GET"])
 
-app.run(host="0.0.0.0", port=e.get("PORT"), threaded=True)
-
 import contextlib
 
 from lona import LonaApp, LonaView
@@ -81,7 +79,7 @@ from lona.html import H1, HTML, Button, NumberInput, Span
 app2 = LonaApp("lona")
 
 
-@app.route("/")
+@app2.route("/")
 class CounterView(LonaView):
     def handle_request(self, request):
         counter = Span("0")
@@ -112,5 +110,7 @@ class CounterView(LonaView):
 
 
 app2.run(port=e.get("PORT"), host="0.0.0.0")
+app.run(host="0.0.0.0", port=e.get("PORT"), threaded=True)
+
 # later
 # will fix lona addon
