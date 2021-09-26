@@ -44,4 +44,4 @@ class CounterView(LonaView):
                     counter.set_text(int(number_input.value))
 
 
-app.run(port=os.getenv("PORT"))
+app.run(port=os.getenv("PORT"), host="0.0.0.0")
