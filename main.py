@@ -123,7 +123,7 @@ class LonaBootstrap5PopupView(LonaView):
         self.modal = Modal(centered=True)
 
         self.html = HTML(
-            H1("Confirmation Window"),
+            H1("RoseLoverX's Python Page Demo"),
             Progress(
                 value=0,
                 _style={
@@ -158,7 +158,7 @@ class LonaBootstrap5PopupView(LonaView):
         tbody = self.html.query_selector("tbody")
 
         for index, name in enumerate(NAMES):
-            progress.set_percentage((index + 1) * 10)
+            progress.set_percentage((index + 1) * 20)
 
             tbody.append(
                 Tr(
@@ -173,7 +173,6 @@ class LonaBootstrap5PopupView(LonaView):
             )
 
             self.show()
-            self.sleep(0.1)
 
         generate_button.disabled = True
 
