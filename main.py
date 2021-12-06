@@ -20,15 +20,22 @@ bot.start()
 async def uu(r):
     data = await request.post()
     try:
-      u = bot.get_entity(data["username"])
-      if isinstance (u, types.User):
-        dc_id = u.photo.dc_id if u.photo else None
-        return_data = {"id": u.id, "deleted": u.deleted, "first_name": u.first_name, "last_name": u.last_name, "username": u.username, "phone": u.phone, "dc_id": dc_id, "lang_code": u.lang_code, "type": "user"}
-      status = 200
-      error = ""
-    except Exception as exp:
-      status = 401
-      error = ""
+        u = bot.get_entity(data["username"])
+        if isinstance(u, types.User):
+            dc_id = u.photo.dc_id if u.photo else None
+            return_data = {
+                "id": u.id,
+                "deleted": u.deleted,
+                "first_name": u.first_name,
+                "last_name": u.last_name,
+                "username": u.username,
+                "phone": u.phone,
+                "dc_id": dc_id,
+                "lang_code": u.lang_code,
+                "type": "user",
+            }
+    except Exception:
+        pass
     return web.Response(text=return_data, content_type="application/json")
 
 
