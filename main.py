@@ -88,3 +88,4 @@ async def resolve_username():
 
 
 app.run(host="0.0.0.0", port=e.get("PORT"), threaded=True)
+bot.run_until_disconnected()
