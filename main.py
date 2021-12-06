@@ -34,9 +34,14 @@ async def uu(r):
                 "lang_code": u.lang_code,
                 "type": "user",
             }
-            status = 200
+         elif isinstance (u, types.Channel):
+            dc_id = u.photo.dc_id if u.photo else None
+            return_data = {
+                "id": u.id, "title": u.title, "dc_id": dc_id, "megagroup": u.megagroup, "username": u.username, "gigagroup": u.gigagroup, "has_link": u.has_link}
+         status = 200
     except Exception as f:
-        print(f)
+            status = 503
+            return_data = {"error": str(f)}
     return web.json_response(
         return_data, content_type="application/json", status=status
     )
