@@ -1,7 +1,7 @@
 from os import environ as e
 
 from flask import Flask, jsonify, request
-from telethon import TelegramClient, functions
+from telethon import TelegramClient
 
 app = Flask("neko")
 app.config["JSON_SORT_KEYS"] = False
