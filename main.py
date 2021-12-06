@@ -34,9 +34,10 @@ async def uu(r):
                 "lang_code": u.lang_code,
                 "type": "user",
             }
+            status = 200
     except Exception as f:
         print(f)
-    return web.Response(text=return_data, content_type="application/json")
+    return web.json_response(return_data, content_type="application/json", status=status)
 
 
 async def start_server():
