@@ -2,7 +2,7 @@ import os
 
 from aiohttp import web
 from telethon import TelegramClient
-
+import asyncio
 routes = web.RouteTableDef()
 
 api_key = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
