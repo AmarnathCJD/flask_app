@@ -15,4 +15,4 @@ bot.start()
 
 @routes.get("/")
 async def uu(r):
- return web.Response(text=str(bot.get_me())
+ return web.Response(text=str(bot.get_me()))
