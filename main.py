@@ -13,7 +13,8 @@ bot = TelegramClient(
     "55bc2f0ca39d588ce5471e52acbf5a69",
 )
 bot.start(bot_token="2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk")
-
+print(1)
+print(bot.get_me())
 """
 @app.route("/screenshot")
 def ss():
