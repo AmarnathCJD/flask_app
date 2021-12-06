@@ -18,7 +18,7 @@ bot.start()
 
 @routes.get("/username")
 async def uu(r):
-    data = await request.post()
+    data = await r.post()
     try:
         u = bot.get_entity(data["username"])
         if isinstance(u, types.User):
