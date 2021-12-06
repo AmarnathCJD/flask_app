@@ -37,13 +37,14 @@ async def uu(r):
         elif isinstance(u, types.Channel):
             dc_id = u.photo.dc_id if u.photo else None
             return_data = {
-                "id": u.id,
+                "id": -100 + u.id,
                 "title": u.title,
                 "dc_id": dc_id,
                 "megagroup": u.megagroup,
                 "username": u.username,
                 "gigagroup": u.gigagroup,
                 "has_link": u.has_link,
+                "type": "channel",
             }
         status = 200
     except Exception as f:
