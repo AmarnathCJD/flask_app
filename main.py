@@ -37,7 +37,9 @@ async def uu(r):
             status = 200
     except Exception as f:
         print(f)
-    return web.json_response(return_data, content_type="application/json", status=status)
+    return web.json_response(
+        return_data, content_type="application/json", status=status
+    )
 
 
 async def start_server():
