@@ -81,7 +81,7 @@ async def resolve_username():
         return jsonify({"status": 401, "error": "username is empty"})
     try:
         u = await bot.get_entity(q)
-        return jsonify({"status": 200, "error": str(u)})
+        return jsonify({"status": 200, "entity": str(u.id)})
     except Exception as a:
         return jsonify({"status": 403, "error": str(a)})
 
