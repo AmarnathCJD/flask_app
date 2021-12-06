@@ -8,11 +8,11 @@ app.config["JSON_SORT_KEYS"] = False
 
 api_key = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
 bot = TelegramClient(
-    "2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk",
+    "api_bot",
     4529547,
     "55bc2f0ca39d588ce5471e52acbf5a69",
 )
-bot.start()
+bot.start(bot_token="2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk")
 
 """
 @app.route("/screenshot")
