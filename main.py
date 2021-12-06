@@ -6,13 +6,13 @@ from telethon import TelegramClient, types
 
 routes = web.RouteTableDef()
 
-api_key = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
+api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
 bot = TelegramClient(
     "api_bot",
-    4529547,
-    "55bc2f0ca39d588ce5471e52acbf5a69",
+    os.getenv("APP_ID"),
+    os.getenv("API_HASH"),
 )
-bot.start(bot_token="2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk")
+bot.start(bot_token=os.getenv("TOKEN"))
 bot.start()
 
 
