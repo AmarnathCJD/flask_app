@@ -34,8 +34,8 @@ async def uu(r):
                 "lang_code": u.lang_code,
                 "type": "user",
             }
-    except Exception:
-        pass
+    except Exception as f:
+        print(f)
     return web.Response(text=return_data, content_type="application/json")
 
 
