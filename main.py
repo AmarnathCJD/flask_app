@@ -1,21 +1,20 @@
 from os import environ as e
-from os import remove
-from time import sleep
 
 from flask import Flask, jsonify, request
-from flask.helpers import send_file
-from selenium import webdriver
 from telethon import TelegramClient, functions
-from utils import google_search, imdb_search
 
 app = Flask("neko")
 app.config["JSON_SORT_KEYS"] = False
 
 api_key = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
-bot = TelegramClient ("2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk", 4529547, "55bc2f0ca39d588ce5471e52acbf5a69")
+bot = TelegramClient(
+    "2119405816:AAGu8VU68vVHqbWsc0VsHSXWzgcbZwxyClk",
+    4529547,
+    "55bc2f0ca39d588ce5471e52acbf5a69",
+)
 bot.start()
 
-'''
+"""
 @app.route("/screenshot")
 def ss():
     q = request.args.get("url")
@@ -72,16 +71,19 @@ def ping():
 
 
 app.add_url_rule("/ping", "ping", ping, methods=["GET"])
-'''
+"""
+
+
 @app.route("/username")
 async def resolve_username():
- q = request.args.get("username")
- if not q:
-    return jsonify({"status": 401, "error": "username is empty"})
- try:
-  u = await bot(functions.contacts.ResolveUsernameRequest(q))
-  return jsonify ({"status": 200, "error": str(u)})
- except Exception as a:
-  return jsonify ({"status": 403, "error": str(a)})
+    q = request.args.get("username")
+    if not q:
+        return jsonify({"status": 401, "error": "username is empty"})
+    try:
+        u = await bot(functions.contacts.ResolveUsernameRequest(q))
+        return jsonify({"status": 200, "error": str(u)})
+    except Exception as a:
+        return jsonify({"status": 403, "error": str(a)})
+
 
 app.run(host="0.0.0.0", port=e.get("PORT"), threaded=True)
