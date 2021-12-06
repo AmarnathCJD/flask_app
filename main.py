@@ -20,7 +20,7 @@ bot.start()
 async def uu(r):
     data = await r.post()
     try:
-        u = bot.get_entity(data["username"])
+        u = bot.get_entity(r.rel_url.query['username'])
         if isinstance(u, types.User):
             dc_id = u.photo.dc_id if u.photo else None
             return_data = {
