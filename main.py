@@ -76,11 +76,11 @@ app.add_url_rule("/ping", "ping", ping, methods=["GET"])
 
 @app.route("/username")
 async def resolve_username():
-    q = request.args.get("username")
+    q = request.args.get("u")
     if not q:
         return jsonify({"status": 401, "error": "username is empty"})
     try:
-        u = await bot(functions.contacts.ResolveUsernameRequest(q))
+        u = await bot.get_entity(q)
         return jsonify({"status": 200, "error": str(u)})
     except Exception as a:
         return jsonify({"status": 403, "error": str(a)})
