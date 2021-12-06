@@ -2,7 +2,7 @@ import asyncio
 import os
 
 from aiohttp import web
-from telethon import TelegramClient
+from telethon import TelegramClient, types
 
 routes = web.RouteTableDef()
 
