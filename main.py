@@ -13,7 +13,6 @@ bot = TelegramClient(
     os.getenv("API_HASH"),
 )
 bot.start(bot_token=os.getenv("TOKEN"))
-bot.start()
 
 
 @routes.get("/username")
