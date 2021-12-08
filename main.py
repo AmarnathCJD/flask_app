@@ -3,7 +3,7 @@ import os
 
 from aiohttp import web
 from telethon import TelegramClient, types
-
+from .utils import imdb_search
 routes = web.RouteTableDef()
 
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
@@ -53,6 +53,13 @@ async def uu(r):
         return_data, content_type="application/json", status=status
     )
 
+@routes.get("/imdb")
+async def IMDb (r):
+ q = r.rel_url.query["q"]
+ mov = imdb_search(q)
+ return web.json_response(
+        mov, content_type="application/json", status=200
+    )
 
 async def start_server():
     port = int(os.environ.get("PORT"))
