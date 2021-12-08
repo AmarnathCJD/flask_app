@@ -4,7 +4,7 @@ import os
 from aiohttp import web
 from telethon import TelegramClient, types
 
-from .utils import imdb_search
+from utils import imdb_search
 
 routes = web.RouteTableDef()
 
