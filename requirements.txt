@@ -1,4 +1,4 @@
-Flask[async]
 requests
 telethon
 aiohttp
+bs4
