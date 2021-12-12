@@ -3,7 +3,7 @@ import os
 
 from aiohttp import web
 from telethon import TelegramClient, types
-
+from google_translate_py import AsyncTranslator
 from utils import imdb_search
 
 routes = web.RouteTableDef()
@@ -61,6 +61,12 @@ async def IMDb(r):
     q = r.rel_url.query["q"]
     mov = imdb_search(q)
     return web.json_response(mov, content_type="application/json", status=200)
+
+@routes.get("/translate")
+async def google_trans(r):
+    q, lang = r.rel_url.query["text"], r.rel_url.query["lang"]
+    tr = await AsyncTranslator().translate("Hello World!!", "", lang)
+    return web.json_response({"text": tr}, content_type="application/json", status=200)
 
 
 async def start_server():
