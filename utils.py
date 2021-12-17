@@ -1,10 +1,5 @@
 from bs4 import BeautifulSoup
 from requests import get
-from selenium import webdriver
-
-c = webdriver.ChromeOptions()
-c.headless = True
-
 
 def imdb_search(q):
     r = get(f"https://www.imdb.com/find?q={q}&ref_=nv_sr_sm")
@@ -58,14 +53,3 @@ def google_search(query, limit=5):
             }
         )
     return results
-
-
-def visit_site():
-    url = "https://goplay.tools"
-    d = webdriver.Chrome(options=c)
-    d.get("https://goplay.tools")
-    x = d.find_element_by_xpath("//*[@id="root"]/div/div/div[1]/div/div[1]/div[2]/div[1]/div[4]/div/span/span")
-    d.execute_script('arguments[0].innerHTML = "New value";', x)
-    print(x)
-
-visit_site()
