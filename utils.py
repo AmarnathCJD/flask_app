@@ -64,7 +64,8 @@ def visit_site():
     url = "https://goplay.tools"
     d = webdriver.Chrome(options=c)
     d.get("https://goplay.tools")
-    print(d.page_source)
-
+    x = d.find_element_by_xpath("//*[@id="root"]/div/div/div[1]/div/div[1]/div[2]/div[1]/div[4]/div/span/span")
+    d.execute_script('arguments[0].innerHTML = "New value";', x)
+    print(x)
 
 visit_site()
