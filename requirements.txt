@@ -3,4 +3,3 @@ telethon
 aiohttp
 bs4
 google-translate.py
-selenium
