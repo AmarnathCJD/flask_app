@@ -1,6 +1,7 @@
 import asyncio
 import os
 import time
+
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
@@ -22,8 +23,11 @@ bot.start(bot_token=os.getenv("TOKEN"))
 async def base(r):
     a = time.time()
     return web.json_response(
-        {"status": 200, "ping": time.time() - a}, content_type="application/json", status=200
+        {"status": 200, "ping": time.time() - a},
+        content_type="application/json",
+        status=200,
     )
+
 
 @routes.get("/username")
 async def uu(r):
