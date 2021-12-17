@@ -23,7 +23,7 @@ bot.start(bot_token=os.getenv("TOKEN"))
 async def base(r):
     a = time.time()
     return web.json_response(
-        {"status": 200, "ping": time.time() - a},
+        {"status": 200, "ping": str(time.time() - a)[:3] + " ms"},
         content_type="application/json",
         status=200,
     )
