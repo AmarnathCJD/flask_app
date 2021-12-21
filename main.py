@@ -11,6 +11,7 @@ from utils import google_search, imdb_search
 routes = web.RouteTableDef()
 
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
+
 bot = TelegramClient(
     "api_bot",
     os.getenv("APP_ID"),
@@ -86,7 +87,7 @@ async def google_trans(r):
 async def google_search(r):
     q, limit = r.rel_url.query["query"], r.rel_url.query["limit"]
     limit = limit if limit else 5
-    results = google_search(q, limit)
+    results = google_search(q)
     return web.json_response(
         {"results": results}, content_type="application/json", status=200
     )
