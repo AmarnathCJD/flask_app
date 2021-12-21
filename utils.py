@@ -30,8 +30,8 @@ def imdb_search(q):
     }
 
 
-def google_search(query, limit=5):
-    url = f"https://www.google.com/search?&q={query}&num=8"
+def google_search(query, limit=10):
+    url = f"https://www.google.com/search?&q={query}&num=10"
     usr_agent = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
         "Chrome/61.0.3163.100 Safari/537.36"
