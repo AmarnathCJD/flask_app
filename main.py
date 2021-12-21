@@ -84,9 +84,8 @@ async def google_trans(r):
 
 
 @routes.get("/google")
-async def google_search(r):
-    q, limit = r.rel_url.query["query"], r.rel_url.query["limit"]
-    limit = limit if limit else 5
+async def gg_search(r):
+    q = r.rel_url.query["query"]
     results = await google_search(q)
     return web.json_response(
         {"results": results}, content_type="application/json", status=200
