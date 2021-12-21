@@ -6,7 +6,7 @@ from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
 
-from utils import imdb_search, google_search
+from utils import google_search, imdb_search
 
 routes = web.RouteTableDef()
 
@@ -81,13 +81,15 @@ async def google_trans(r):
     tr = await AsyncTranslator().translate("Hello World!!", "", lang)
     return web.json_response({"text": tr}, content_type="application/json", status=200)
 
+
 @routes.get("/google")
 async def google_search(r):
     q, limit = r.rel_url.query["query"], r.rel_url.query["limit"]
     limit = limit if limit else 5
     results = google_search(q, limit)
-    return web.json_response({"results": results}, content_type="application/json", status=200)
-
+    return web.json_response(
+        {"results": results}, content_type="application/json", status=200
+    )
 
 
 async def start_server():
