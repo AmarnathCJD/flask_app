@@ -86,7 +86,7 @@ async def google_trans(r):
 @routes.get("/google")
 async def gg_search(r):
     q = r.rel_url.query["query"]
-    results = await google_search(q)
+    results = google_search(q)
     return web.json_response(
         {"results": results}, content_type="application/json", status=200
     )
