@@ -7,6 +7,7 @@ from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
 
 from utils import google_search, imdb_search
+from home import HOME
 
 routes = web.RouteTableDef()
 
@@ -22,12 +23,15 @@ bot.start(bot_token=os.getenv("TOKEN"))
 
 @routes.get("/")
 async def base(r):
+    return web.Response(text=HOME, content_type="text/html")
+'''
     a = time.time()
     return web.json_response(
         {"status": 200, "ping": str(time.time() - a)[:3] + " ms"},
         content_type="application/json",
         status=200,
     )
+'''
 
 
 @routes.get("/username")
