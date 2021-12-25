@@ -1,6 +1,6 @@
 HOME = """
-<body bgcolor="blue">
+<body bgcolor="green">
 <title>Home 🏡</title>
-<p>SmD Amjana</p>
+<h1>Nived Kuved</h1>
 </body>
 """
