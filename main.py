@@ -34,6 +34,18 @@ async def base(r):
     )
 """
 
+@routes.get("/go")
+async def go_ev(r):
+    try:
+        code = r.rel_url.query["code"]
+    except KeyError:
+        return web.json_response(
+        {"error": "'code' param is empty"}, content_type="application/json", status=403
+    )
+    eval = go_eval(code)
+    return web.json_response(
+        eval, content_type="application/json", status=200
+    )
 
 @routes.get("/username")
 async def uu(r):
