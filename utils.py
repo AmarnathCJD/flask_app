@@ -55,6 +55,7 @@ def google_search(query, limit=8):
         )
     return results
 
+
 def go_eval(code):
     url = "https://go.dev/_/compile?"
     params = {"version": 2, "body": code, "withVet": True}
@@ -70,6 +71,6 @@ def go_eval(code):
         result["delay"] = r["Events"][0]["Delay"]
     if r["Errors"] != "":
         result["errors"] = r["Errors"]
-    else :
+    else:
         result["errors"] = ""
     return result
