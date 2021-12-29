@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from requests import get
+from requests import get, post
 
 
 def imdb_search(q):
@@ -54,3 +54,22 @@ def google_search(query, limit=8):
             }
         )
     return results
+
+def go_eval(code):
+    url = "https://go.dev/_/compile?"
+    params = {"version": 2, "body": code, "withVet": True}
+    r = post(url, params=params).json()
+    result = {}
+    if r["Events"] == None:
+        result["output"] = ""
+        result["delay"] = 0
+        result["kind"] = "unknown"
+    else:
+        result["output"] = r["Events"][0]["Message"]
+        result["kind"] = "stdout"
+        result["delay"] = r["Events"][0]["Delay"]
+    if r["Errors"] != "":
+        result["errors"] = r["Errors"]
+    else :
+        result["errors"] = ""
+    return result
