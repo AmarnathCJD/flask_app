@@ -6,7 +6,7 @@ from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
 
 from home import HOME
-from utils import google_search, imdb_search
+from utils import google_search, imdb_search, go_eval
 
 routes = web.RouteTableDef()
 
