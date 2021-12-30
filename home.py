@@ -5,6 +5,7 @@ HOME = """
 <title>Amarnath CDJ</title><meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="description" content="" />
 <meta name="author" content="http://webthemez.com" />
+<link rel="stylesheet" href="index.css" />
 </head>
 <body>
   <header class="header" role="banner" id="top">
