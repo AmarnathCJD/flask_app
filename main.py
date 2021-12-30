@@ -110,18 +110,19 @@ async def gg_search(r):
         {"results": results}, content_type="application/json", status=200
     )
 
+
 @routes.get("/stripe")
 async def stripe_post(r):
     data = r.rel_url.query
     try:
-        json_data = stripe_check(data["cc_num"], data["month"], data["year"], data["cvv"])
-        return web.json_response(
-        json_data, content_type="application/json", status=200
-    )
+        json_data = stripe_check(
+            data["cc_num"], data["month"], data["year"], data["cvv"]
+        )
+        return web.json_response(json_data, content_type="application/json", status=200)
     except Exception as exc:
         return web.json_response(
-        {"error": str(exc)}, content_type="application/json", status=200
-    )
+            {"error": str(exc)}, content_type="application/json", status=200
+        )
 
 
 async def start_server():
