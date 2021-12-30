@@ -2,6 +2,7 @@ import asyncio
 import os
 
 import aiohttp_jinja2
+import jinja2
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
