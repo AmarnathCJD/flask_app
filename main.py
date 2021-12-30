@@ -22,7 +22,7 @@ bot.start(bot_token=os.getenv("TOKEN"))
 
 @routes.get("/")
 async def base(r):
-    response = aiohttp_jinja2.render_template("home.html", r)
+    response = aiohttp_jinja2.render_template("home.html", r, context={})
     return response
 
 
