@@ -12,6 +12,7 @@ routes = web.RouteTableDef()
 
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
 
+
 bot = TelegramClient(
     "api_bot",
     os.getenv("APP_ID"),
@@ -132,6 +133,9 @@ async def start_server():
     app.add_routes(routes)
     runner = web.AppRunner(app)
     await runner.setup()
+    aiohttp_jinja2.setup(
+    app, loader=jinja2.FileSystemLoader(os.path.join(os.getcwd(), "/"))
+)
     await web.TCPSite(runner, "0.0.0.0", port).start()
 
 
