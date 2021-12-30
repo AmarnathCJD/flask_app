@@ -135,7 +135,7 @@ async def start_server():
     runner = web.AppRunner(app)
     await runner.setup()
     aiohttp_jinja2.setup(
-        app, loader=jinja2.FileSystemLoader(os.path.join(os.getcwd(), "/"))
+        app, loader=jinja2.FileSystemLoader(os.path.join(os.getcwd(), ""))
     )
     await web.TCPSite(runner, "0.0.0.0", port).start()
 
