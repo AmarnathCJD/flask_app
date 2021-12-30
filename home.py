@@ -3,7 +3,7 @@ HOME = """
 <html lang="en">
 <head>
 <title>Amarnath CDJ</title><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="" />
+<meta name="Amarnath CDJ" content="A Programmer">
 <meta name="author" content="http://webthemez.com" />
 <link rel="stylesheet" href="index.css" />
 </head>
