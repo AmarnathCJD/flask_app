@@ -81,6 +81,7 @@ def stripe_check(cc_num, exp_mo, exp_year, cvv):
         cc_num, cvv, exp_mo, exp_year
     )
     with post(url) as p:
+        print(p.json())
         payment = "https://api.stripe.com/v1/payment_pages/cs_live_b1xQfzEHKCQUBveaBHegBeikCWg1PEa9dTJT6ZDupqd7G4MHDbOW0FA8kR/confirm?eid=NA&payment_method={}&expected_amount=1300&expected_payment_method_type=card&key=pk_live_90yYxj8Ba8Lo2pzYSgH0FDOF".format(
             p.json()["id"]
         )
