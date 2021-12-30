@@ -7,9 +7,6 @@ HOME = """
 <meta name="author" content="http://webthemez.com" />
 </head>
 <body>
-
-  <!-- ***** Header ***** -->
-
   <header class="header" role="banner" id="top">
     <div class="row">
       <nav class="nav" role="navigation">
@@ -28,45 +25,37 @@ HOME = """
     <div class="header__text-box row">
       <div class="header__text">
         <h1 class="heading-primary">
-          <!-- Replace the following name with your name -->
-          <span>Syed Ali Hussnain</span>
+          <span>Amarnath CDJ</span>
         </h1>
-        <!-- Put a small paragraph about yourself -->
-        <p>A Web Developer based in Lahore, Pakistan.</p>
+        <p>A Web Developer based in Kerala, India.</p>
         <a href="#contact" class="btn btn--pink">Get in touch</a>
       </div>
     </div>
   </header>
 
   <main role="main">
-
-    <!-- ***** Work ***** -->
-
     <section class="work" id="work">
       <div class="row">
-        <h2>My Work</h2>
+        <h2>My Works</h2>
         <div class="work__boxes">
-
-          <!-- Each div with the work__box class is a project. -->
-
           <div class="work__box">
             <div class="work__text">
-              <h3>Portfolio Template</h3>
+              <h3>RApi</h3>
               <p>
-                A free Open Source Portfolio for anyone to use for free.
+                A free multipurpose REST APi
               </p>
               <ul class="work__list">
+                <li>Python</li>
                 <li>HTML</li>
-                <li>SCSS</li>
-                <li>JavaScript</li>
-                <li>Parcel</li>
+                <li>Golang</li>
+                <li>Telethon</li>
               </ul>
 
               <div class="work__links">
                 <a href="https://nisar.surge.sh" target="_blank" class="link__text">
                   Visit Site <span>&rarr;</span>
                 </a>
-                <a href="https://github.com/nisarhassan12/portfolio" title="View Source Code" target="_blank">
+                <a href="https://github.com/amarnathcjd" title="Visit My Github" target="_blank">
                   <img src="./images/github.svg" class="work__code" alt="GitHub">
                 </a>
               </div>
