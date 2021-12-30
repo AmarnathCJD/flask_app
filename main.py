@@ -22,22 +22,6 @@ bot = TelegramClient(
 bot.start(bot_token=os.getenv("TOKEN"))
 
 
-@routes.get("/")
-async def base(r):
-    response = aiohttp_jinja2.render_template("home.html", r, context={})
-    return response
-
-
-"""
-    a = time.time()
-    return web.json_response(
-        {"status": 200, "ping": str(time.time() - a)[:3] + " ms"},
-        content_type="application/json",
-        status=200,
-    )
-"""
-
-
 @routes.get("/go")
 async def go_ev(r):
     try:
