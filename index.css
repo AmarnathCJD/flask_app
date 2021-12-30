@@ -1,8 +1,16 @@
-/* --------------------------------------- */
-/* ----- Basic Setup ----- */
-/* --------------------------------------- */
+@font-face {
+    font-family: 'Hk Grotesk';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/HKGrotesk-Regular.woff') format('woff');
+}
 
-
+@font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./assets/Jost-Regular.ttf') format('woff');
+}
 
 * {
     margin: 0;
@@ -17,6 +25,7 @@
     --font-size-medium-1: 3.6rem;
     --font-size-large: 5.5rem;
     --font-size-huge: 7.5rem;
+    --font-stack: 'Hk Grotesk', sans-serif;
 
     --line-height-normal: 1.7;
     --line-height-small: 1.2;
@@ -42,7 +51,7 @@
 }
 
 html {
-    font-size: 62.5%; /* (16/10)*100 = 62.5% => 1rem = 10px */
+    font-size: 62.5%;
     box-sizing: border-box;
     scroll-behavior: smooth;
 }
@@ -55,6 +64,7 @@ html {
 
 body {
     font-size: var(--font-size-small);
+    font-family: var(--font-stack);
     font-weight: 400;
     color: var(--white-1);
     line-height: var(--line-height-normal);
@@ -100,11 +110,6 @@ img {
     object-fit: contain;
     max-width: 100%;
 }
-
-/* --------------------------------------- */
-/* ----- Headlines and Paragraphs ----- */
-/* --------------------------------------- */
-
 h1,
 h2,
 h3 {
@@ -168,11 +173,6 @@ p {
         max-width: var(--container-small-width);
     }
 }
-
-/* --------------------------------------- */
-/* ----- Buttons and Links ----- */
-/* --------------------------------------- */
-
 a {
     color: var(--white);
     font-weight: 400;
@@ -283,8 +283,6 @@ body:not(.user-is-tabbing) a:focus {
     font-family: sans-serif;
 }
 
-/* ----- Back to Top ----- */
-
 .back-to-top {
     position: fixed;
     bottom: 4rem;
@@ -316,11 +314,6 @@ body:not(.user-is-tabbing) a:focus {
         right: 1rem;
     }
 }
-
-/* --------------------------------------- */
-/* ----- Navigation ----- */
-/* --------------------------------------- */
-
 .nav {
     display: flex;
     justify-content: flex-end;
@@ -385,13 +378,9 @@ body:not(.user-is-tabbing) a:focus {
     background: var(--pink);
 }
 
-/* --------------------------------------- */
-/* ----- Header ----- */
-/* --------------------------------------- */
-
 .header {
     background: linear-gradient(rgba(0,0,0, .1), rgba(0,0,0, .4)), 
-        url('./assets/header.jpg');
+        url('./assets/ilya-pavlov-OqtafYT5kTw-unsplash.jpg');
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -421,11 +410,6 @@ body:not(.user-is-tabbing) a:focus {
         transform: scale(.8);
     }
 }
-
-/* --------------------------------------- */
-/* ----- Work ----- */
-/* --------------------------------------- */
-
 .work__box {
     display: flex;
     align-items: center;
@@ -458,7 +442,6 @@ body:not(.user-is-tabbing) a:focus {
 }
 
 .work__list {
-    /* list-style-type: square; */
     list-style-position: inside;
     margin-bottom: var(--gutter-normal);
 }
@@ -491,10 +474,6 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Clients ----- */
-/* --------------------------------------- */
-
 .client__logos {
     display: flex;
     justify-content: space-between;
@@ -516,10 +495,6 @@ body:not(.user-is-tabbing) a:focus {
         margin-right: var(--gutter-medium);
     }
 }
-
-/* --------------------------------------- */
-/* ----- About ----- */
-/* --------------------------------------- */
 
 .about__content {
     display: flex;
@@ -549,17 +524,9 @@ body:not(.user-is-tabbing) a:focus {
     }
 }
 
-/* --------------------------------------- */
-/* ----- Contact ----- */
-/* --------------------------------------- */
-
 .contact__info {
     max-width: var(--container-medium-width);
 }
-
-/* --------------------------------------- */
-/* ----- Footer ----- */
-/* --------------------------------------- */
 
 .footer {
     text-align: center;
