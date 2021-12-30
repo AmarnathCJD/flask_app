@@ -3,7 +3,7 @@ import os
 
 from aiohttp import web
 from google_translate_py import AsyncTranslator
-from home import HOME
+import aiohttp_jinja2
 from telethon import TelegramClient, types
 
 from utils import go_eval, google_search, imdb_search, stripe_check
@@ -22,7 +22,8 @@ bot.start(bot_token=os.getenv("TOKEN"))
 
 @routes.get("/")
 async def base(r):
-    return web.Response(text=HOME, content_type="text/html")
+   response = aiohttp_jinja2.render_template("home.html", r)
+   return response
 
 
 """
