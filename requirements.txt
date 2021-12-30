@@ -4,3 +4,4 @@ aiohttp
 bs4
 google-translate.py
 selenium
+aiohttp-jinja2
