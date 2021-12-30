@@ -85,7 +85,7 @@ HOME = """
                   Visit Site <span>&rarr;</span>
                 </a>
                 <a href="#">
-                  <img src="./images/github.svg" class="work__code" title="View Source Code" alt="GitHub">
+                  <img src="./assets/ilya-pavlov-OqtafYT5kTw-unsplash.jpg" class="work__code" title="View Source Code" alt="GitHub">
                 </a>
               </div>
             </div>
