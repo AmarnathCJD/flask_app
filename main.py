@@ -115,7 +115,7 @@ async def stripe_post(r):
 async def paste_nekobin(r):
     data = r.rel_url.query
     try:
-        text = data["text"}
+        text = data["text"]
     except KeyError:
                     return web.json_response(
             {"error": "no text param given"}, content_type="application/json", status=401
