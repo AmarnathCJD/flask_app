@@ -123,8 +123,8 @@ async def paste_nekobin(r):
             content_type="application/json",
             status=401,
         )
-    paste = paste(text)
-    return web.json_response(paste, content_type="application/json", status=200)
+    p = paste(text)
+    return web.json_response(p, content_type="application/json", status=200)
 
 
 async def start_server():
