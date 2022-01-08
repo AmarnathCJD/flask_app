@@ -7,7 +7,7 @@ from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
 
-from utils import go_eval, google_search, imdb_search, stripe_check, paste
+from utils import go_eval, google_search, imdb_search, paste, stripe_check
 
 routes = web.RouteTableDef()
 
@@ -111,19 +111,21 @@ async def stripe_post(r):
             {"error": str(exc)}, content_type="application/json", status=200
         )
 
+
 @routes.get("/paste")
 async def paste_nekobin(r):
     data = r.rel_url.query
     try:
         text = data["text"]
     except KeyError:
-                    return web.json_response(
-            {"error": "no text param given"}, content_type="application/json", status=401
+        return web.json_response(
+            {"error": "no text param given"},
+            content_type="application/json",
+            status=401,
         )
     paste = paste(text)
-    return web.json_response(
-            paste, content_type="application/json", status=200
-        )
+    return web.json_response(paste, content_type="application/json", status=200)
+
 
 async def start_server():
     port = int(os.environ.get("PORT"))

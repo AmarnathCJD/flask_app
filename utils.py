@@ -87,10 +87,11 @@ def stripe_check(cc_num, exp_mo, exp_year, cvv):
         )
         return post(payment).json()
 
+
 def paste(text):
     url = "https://nekobin.com/api/documents"
     r = post(url, json={"content": text})
-    try:     
-      return r.json()
+    try:
+        return r.json()
     except:
-      return {"error": "nekobin host down"}
+        return {"error": "nekobin host down"}
