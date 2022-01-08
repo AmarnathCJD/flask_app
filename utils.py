@@ -1,6 +1,7 @@
+import random
+
 from bs4 import BeautifulSoup
 from requests import get, post
-import random
 
 
 def imdb_search(q):
@@ -87,6 +88,7 @@ def stripe_check(cc_num, exp_mo, exp_year, cvv):
             p.json()["id"]
         )
         return post(payment).json()
+
 
 PROXIES = [
     "http://ejasxrod:xez7r0q328ce@209.127.191.180:9279",
