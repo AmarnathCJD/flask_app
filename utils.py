@@ -89,7 +89,7 @@ def stripe_check(cc_num, exp_mo, exp_year, cvv):
 
 def paste(text):
     url = "https://nekobin.com/api/documents"
-    r = post(url, json={"content": text}
+    r = post(url, json={"content": text})
     try:     
       return r.json()
     except:
