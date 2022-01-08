@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from requests import get, post
+import random
 
 
 def imdb_search(q):
@@ -87,10 +88,28 @@ def stripe_check(cc_num, exp_mo, exp_year, cvv):
         )
         return post(payment).json()
 
+PROXIES = [
+    "http://ejasxrod:xez7r0q328ce@209.127.191.180:9279",
+    "http://ejasxrod:xez7r0q328ce@45.136.228.154:6209/",
+    "http://ejasxrod:xez7r0q328ce@193.8.56.119:9183",
+    "http://ejasxrod:xez7r0q328ce@45.94.47.66:8110/",
+    "http://ejasxrod-rotate:xez7r0q328ce@p.webshare.io:80",
+    "http://qslftemw:0x5vkh1h6x5d@209.127.191.180:9279/",
+    "http://qslftemw:0x5vkh1h6x5d@45.95.96.132:8691/",
+    "http://qslftemw:0x5vkh1h6x5d@45.95.96.187:8746/",
+    "http://qslftemw:0x5vkh1h6x5d@45.95.96.237:8796/",
+    "http://qslftemw:0x5vkh1h6x5d@45.136.228.154:6209/",
+    "http://qslftemw:0x5vkh1h6x5d@45.94.47.66:8110/",
+    "http://qslftemw:0x5vkh1h6x5d@45.94.47.108:8152/",
+    "http://qslftemw:0x5vkh1h6x5d@193.8.56.119:9183/",
+    "http://qslftemw:0x5vkh1h6x5d@45.95.99.226:7786/",
+    "http://qslftemw:0x5vkh1h6x5d@45.95.99.20:7580/",
+]
+
 
 def paste(text):
     url = "https://nekobin.com/api/documents"
-    r = post(url, json={"content": text})
+    r = post(url, json={"content": text}, proxies={"https": random.choice(PROXIES)})
     print(r.json())
     try:
         return r.json()
