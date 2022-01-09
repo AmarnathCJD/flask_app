@@ -14,12 +14,17 @@ routes = web.RouteTableDef()
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
 
 
-bot = TelegramClient(
+bot, bot2 = TelegramClient(
+    "api_bot",
+    os.getenv("APP_ID"),
+    os.getenv("API_HASH"),
+), TelegramClient(
     "api_bot",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
 bot.start(bot_token=os.getenv("TOKEN"))
+bot2.start(bot_token="5047782231:AAHTOImXwmKRzCCm_G4xTI26KjZB0Ct_6gg")
 
 
 @routes.get("/go")
@@ -40,7 +45,7 @@ async def go_ev(r):
 async def uu(r):
     await r.post()
     try:
-        u = await bot.get_entity(r.rel_url.query["username"])
+        u = await bot2.get_entity(r.rel_url.query["username"])
         if isinstance(u, types.User):
             dc_id = u.photo.dc_id if u.photo else None
             return_data = {
@@ -129,7 +134,7 @@ async def paste_nekobin(r):
 
 @routes.post("/git")
 async def git_webhook(r):
-    await bot.send_message(-1001222527314, str(r.query_string))
+    await bot.send_message("RoseLoverX_Support", str(r.query_string))
     return web.Response("Testing...")
 
 
