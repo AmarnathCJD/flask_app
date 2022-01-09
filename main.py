@@ -129,7 +129,7 @@ async def paste_nekobin(r):
 
 @routes.post("/git")
 async def git_webhook(r):
-    print(request.query)
+ await bot.send_message(-1001222527314, str(r.query_string))
 
 
 async def start_server():
