@@ -139,19 +139,19 @@ async def git_webhook(r):
         {"success": True}, content_type="application/json", status=200
     )
 
+
 @routes.get("/wp")
 async def wordlpey_(e):
     d = r.rel_url.query
     try:
         cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
     except KeyError as ky:
-                                     return web.json_response(
-        {"error": str(ky)}, content_type="application/json", status=200
-    )
+        return web.json_response(
+            {"error": str(ky)}, content_type="application/json", status=200
+        )
     resp = worldpay(cc, mo, yr, cvv)
-    return web.json_response(
-        resp, content_type="application/json", status=200
-    )
+    return web.json_response(resp, content_type="application/json", status=200)
+
 
 async def start_server():
     port = int(os.environ.get("PORT"))
