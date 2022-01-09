@@ -194,7 +194,7 @@ def worldpay(cc, mo, yr, cvv):
     }
 
     data_2 = "billing_first_name=Jenna+M&billing_last_name=Ortega&billing_company=&billing_country=GB&billing_address_1=326+Garratt+Ln&billing_address_2=&billing_city=London&billing_state=SW18+4EJ&billing_postcode=SW18+4EJ&billing_phone=+%2B44+20+8001+4628&billing_email=amarnathc%40outlook.in&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=GB&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=flat_rate%3A11&payment_method=online_worldpay&online_worldpay_payment_token_type=&wc_gc_cart_code=&woocommerce-process-checkout-nonce=15700b877c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review&online_worldpay_payment_nonce={}".format(
-        r.json()["token"]
+        r["token"]
     )
     req = post(
         check_api,
