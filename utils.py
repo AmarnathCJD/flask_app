@@ -2,7 +2,7 @@ import random
 
 from bs4 import BeautifulSoup
 from requests import get, post
-
+import json
 
 def imdb_search(q):
     r = get(f"https://www.imdb.com/find?q={q}&ref_=nv_sr_sm")
@@ -117,3 +117,65 @@ def paste(text):
         return r.json()
     except:
         return {"error": "nekobin host down"}
+
+def worldpay(cc, mo, yr, cvv):
+ r = post("https://api.worldpay.com/v1/tokens", json={"reusable": False, "paymentMethod": {"type": "Card", "name": "Jenna M Ortega", "expiryMonth": mo, "expiryYear": yr,
+                                             "cardNumber": cc, "cvc": cvv}, "clientKey": "L_C_11b32364-dca9-4f76-8ae6-4f42cca470ca"})
+ if r.get("httpStatusCode") and r["httpStatusCode"] == 400:
+    return {"error": "Invaid payment details"}
+ check_api = "https://brewyork.co.uk/?wc-ajax=checkout"
+ headers = {'authority': 'brewyork.co.uk',
+           'method': 'POST',
+           'path': '/?wc-ajax=checkout',
+           'scheme': 'https',
+           'accept': 'application/json, text/javascript, */*; q=0.01',
+           'accept-encoding': 'gzip, deflate, br',
+           'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+           'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+           'cookie': 'gcl_au=1.1.721725957.1641706988; _gid=GA1.3.227382362.1641706989; _fbp=fb.2.1641706988933.1018948041; age_gate=18; mailchimp_landing_site=https%3A%2F%2Fbrewyork.co.uk%2Fshop%2F; woocommerce_items_in_cart=1; wp_woocommerce_session_e8af323805a4e9c3c4bb5c5adce7d325=b2bc7ee44fa2e690b024263916262f61%7C%7C1641879813%7C%7C1641876213%7C%7Cf9c347ea0c9a28d39aa49732829869ef; _ga=GA1.3.766310529.1641706988; mailchimp.cart.current_email=amarnathc@outlook.in; mailchimp_user_email=amarnathc%40outlook.in; _ga_EK76J8LVMM=GS1.1.1641706987.1.1.1641707185.0; woocommerce_cart_hash=c3b485e2e731863751b1e69d29b2d262; _gali=place_order',
+           'origin': 'https://brewyork.co.uk',
+           'referer': 'https://brewyork.co.uk/checkout/',
+           'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="97", "Chromium";v="97',
+           'sec-ch-ua-mobile': '?0',
+           'sec-ch-ua-platform': '"Linux"',
+           'sec-fetch-dest': 'empty',
+           'sec-fetch-mode': 'cors',
+           'sec-fetch-site': 'same-origin',
+           'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.71 Safari/537.36',
+           'x-requested-with': 'XMLHttpRequest'}
+
+ payload = {'billing_first_name': 'Jenna M',
+           'billing_last_name': 'Ortega',
+           'billing_company': '',
+           'billing_country': 'GB',
+           'billing_address_1': '326 Garratt Ln',
+           'billing_address_2': '',
+           'billing_city': 'London',
+           'billing_state': 'SW18 4EJ',
+           'billing_postcode': 'SW18 4EJ',
+           'billing_phone':  '+44 20 8001 4628',
+           'billing_email': 'amarnathc@outlook.in',
+           'account_password': '',
+           'shipping_first_name': '',
+           'shipping_last_name': '',
+           'shipping_company': '',
+           'shipping_country': 'GB',
+           'shipping_address_1': '',
+           'shipping_address_2': '',
+           'shipping_city': '',
+           'shipping_state': '',
+           'shipping_postcode': '',
+           'order_comments': '',
+           'shipping_method[0]': 'flat_rate:11',
+           'payment_method': 'online_worldpay',
+           'online_worldpay_payment_nonce': r.json()['token'],
+           'online_worldpay_payment_token_type': '',
+           'wc_gc_cart_code': '',
+           'woocommerce-process-checkout-nonce': '15700b877c',
+           '_wp_http_referer': '/?wc-ajax=update_order_review',
+           }
+
+ data_2 = "billing_first_name=Jenna+M&billing_last_name=Ortega&billing_company=&billing_country=GB&billing_address_1=326+Garratt+Ln&billing_address_2=&billing_city=London&billing_state=SW18+4EJ&billing_postcode=SW18+4EJ&billing_phone=+%2B44+20+8001+4628&billing_email=amarnathc%40outlook.in&account_password=&shipping_first_name=&shipping_last_name=&shipping_company=&shipping_country=GB&shipping_address_1=&shipping_address_2=&shipping_city=&shipping_state=&shipping_postcode=&order_comments=&shipping_method%5B0%5D=flat_rate%3A11&payment_method=online_worldpay&online_worldpay_payment_token_type=&wc_gc_cart_code=&woocommerce-process-checkout-nonce=15700b877c&_wp_http_referer=%2F%3Fwc-ajax%3Dupdate_order_review&online_worldpay_payment_nonce={}".format(r.json()[
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   'token'])
+ req = post(check_api, json=payload, headers=headers, data=data_2, params={"wc-ajax": "checkout"})
+ return json.dumps(req.text)
