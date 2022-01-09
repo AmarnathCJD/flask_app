@@ -126,9 +126,11 @@ async def paste_nekobin(r):
     p = paste(text)
     return web.json_response(p, content_type="application/json", status=200)
 
+
 @routes.post("/git")
 async def git_webhook(r):
- print(request.query)
+    print(request.query)
+
 
 async def start_server():
     port = int(os.environ.get("PORT"))
