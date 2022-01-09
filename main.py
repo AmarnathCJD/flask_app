@@ -7,7 +7,7 @@ from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
 
-from utils import go_eval, google_search, imdb_search, paste, stripe_check
+from utils import go_eval, google_search, imdb_search, paste, stripe_check, worldpay
 
 routes = web.RouteTableDef()
 
@@ -139,6 +139,19 @@ async def git_webhook(r):
         {"success": True}, content_type="application/json", status=200
     )
 
+@routes.get("/wp")
+async def wordlpey_(e):
+    d = r.rel_url.query
+    try:
+        cc, mo, yr, cvv = d["cc"], d["month"], d{"year"], d["cvv"]
+    except KeyErroras ky:
+                                     return web.json_response(
+        {"error": str(ky)}, content_type="application/json", status=200
+    )
+    resp = worldpay(cc, mo, yr, cvv)
+    return web.json_response(
+        resp, content_type="application/json", status=200
+    )
 
 async def start_server():
     port = int(os.environ.get("PORT"))
