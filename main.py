@@ -143,7 +143,7 @@ async def git_webhook(r):
 async def wordlpey_(e):
     d = r.rel_url.query
     try:
-        cc, mo, yr, cvv = d["cc"], d["month"], d{"year"], d["cvv"]
+        cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
     except KeyErroras ky:
                                      return web.json_response(
         {"error": str(ky)}, content_type="application/json", status=200
