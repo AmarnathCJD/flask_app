@@ -144,7 +144,7 @@ async def wordlpey_(e):
     d = r.rel_url.query
     try:
         cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
-    except KeyErroras ky:
+    except KeyError as ky:
                                      return web.json_response(
         {"error": str(ky)}, content_type="application/json", status=200
     )
