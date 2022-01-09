@@ -186,7 +186,7 @@ def worldpay(cc, mo, yr, cvv):
         "order_comments": "",
         "shipping_method[0]": "flat_rate:11",
         "payment_method": "online_worldpay",
-        "online_worldpay_payment_nonce": r.json()["token"],
+        "online_worldpay_payment_nonce": r["token"],
         "online_worldpay_payment_token_type": "",
         "wc_gc_cart_code": "",
         "woocommerce-process-checkout-nonce": "15700b877c",
