@@ -19,7 +19,7 @@ bot, bot2 = TelegramClient(
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 ), TelegramClient(
-    "api_bot",
+    "bot_2",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
