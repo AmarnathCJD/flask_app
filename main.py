@@ -134,7 +134,7 @@ async def paste_nekobin(r):
 
 @routes.post("/git")
 async def git_webhook(r):
-    await bot.send_message("RoseLoverX_Support", str(r.query_string))
+    await bot.send_message("RoseLoverX_Support", "s " + str(r.query))
     return web.Response("Testing...")
 
 
