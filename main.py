@@ -150,13 +150,18 @@ async def paste_nekobin(r):
     p = paste(text)
     return web.json_response(p, content_type="application/json", status=200)
 
-
+cm = ""
 @routes.post("/git")
 async def git_webhook(r):
-    print(await r.text())
+    global cm
+    cm = await r.text()
     return web.json_response(
         {"success": True}, content_type="application/json", status=200
     )
+
+@routes.post("/webhook")
+async def c(r):
+ return web.json_response(json.loads(cm), content_type="application/json", status=200)
 
 
 @routes.get("/wp")
