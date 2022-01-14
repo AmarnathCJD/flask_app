@@ -1,6 +1,6 @@
 import asyncio
 import os
-
+from requests import get
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
