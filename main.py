@@ -165,7 +165,7 @@ async def git_webhook(r):
 
 @routes.get("/webhook")
 async def c(r):
-    return web.Response(text=cm)
+    return web.Response(text=str(cm))
 
 
 @routes.get("/wp")
