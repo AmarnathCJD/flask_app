@@ -165,7 +165,7 @@ async def git_webhook(r):
             d = cm.get("data").get("output_stream_url")
             with get(d) as r:
                 data = r.text.split("-----> Running")[1]
-                await bot.send_message("roseloverx_support", str(data))
+                await bot.send_message("roseloverx_support", "<b>Heroku Build Failed</b>, \nLOGS: " + str(data))
     except BaseException as a:
         print(a)
     return web.json_response(
