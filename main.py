@@ -30,18 +30,18 @@ bot2.start(bot_token="5047782231:AAHTOImXwmKRzCCm_G4xTI26KjZB0Ct_6gg")
 async def base_page(r):
     msg = """
 <b>Methods</b>
-<a href='https://api.roseloverx.in/'>https://api.roseloverx.in/</a> <b>-THIS PAGE</b>
-https://api.roseloverx.in/go <b>-GET</b>
-https://api.roseloverx.in/username <b>-GET</b>
-https://api.roseloverx.in/imdb <b>-GET</b>
-https://api.roseloverx.in/translate <b>-GET</b>
-https://api.roseloverx.in/google <b>-GET</b>
-https://api.roseloverx.in/stripe <b>-GET</b>
-https://api.roseloverx.in/paste <b>-GET</b>
-https://api.roseloverx.in/wp <b>-GET</b>
-https://api.roseloverx.in/git <b>-POST</b>
+\n<h6><a href='https://api.roseloverx.in/'>https://api.roseloverx.in/</a> <b>-THIS PAGE</b>
+\nhttps://api.roseloverx.in/go <b>-GET</b>
+\nhttps://api.roseloverx.in/username <b>-GET</b>
+\nhttps://api.roseloverx.in/imdb <b>-GET</b>
+\nhttps://api.roseloverx.in/translate <b>-GET</b>
+\nhttps://api.roseloverx.in/google <b>-GET</b>
+\nhttps://api.roseloverx.in/stripe <b>-GET</b>
+\nhttps://api.roseloverx.in/paste <b>-GET</b>
+\nhttps://api.roseloverx.in/wp <b>-GET</b>
+\nhttps://api.roseloverx.in/git <b>-POST</b></h6>
 
-<b>© RoseloverX™ 2021-22</b>
+\n\n<b>© RoseloverX™ 2021-22</b>
 """
     return web.Response(text=msg, content_type="text/html")
 
