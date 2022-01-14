@@ -17,7 +17,7 @@ bot = TelegramClient(
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
-bot2 =  TelegramClient(
+bot2 = TelegramClient(
     "bot_2",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
@@ -25,9 +25,10 @@ bot2 =  TelegramClient(
 bot.start(bot_token=os.getenv("TOKEN"))
 bot2.start(bot_token="5047782231:AAHTOImXwmKRzCCm_G4xTI26KjZB0Ct_6gg")
 
+
 @routes.get("/")
 async def base_page(r):
- msg = '''
+    msg = """
 <b>Methods</b>
 https://api.roseloverx.in/ -THIS PAGE
 https://api.roseloverx.in/go -GET
@@ -39,8 +40,8 @@ https://api.roseloverx.in/stripe -GET
 https://api.roseloverx.in/paste -GET
 https://api.roseloverx.in/wp -GET
 https://api.roseloverx.in/git -POST
-'''
- return web.Response(text=msg)
+"""
+    return web.Response(text=msg)
 
 
 @routes.get("/go")
