@@ -163,7 +163,7 @@ async def git_webhook(r):
     )
 
 
-@routes.post("/webhook")
+@routes.get("/webhook")
 async def c(r):
     return web.json_response(
         json.loads(cm), content_type="application/json", status=200
