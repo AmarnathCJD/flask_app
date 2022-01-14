@@ -157,7 +157,7 @@ cm = ""
 @routes.post("/git")
 async def git_webhook(r):
     global cm
-    cm = await r.text()
+    cm = await r.json()
     return web.json_response(
         {"success": True}, content_type="application/json", status=200
     )
