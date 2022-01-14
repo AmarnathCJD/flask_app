@@ -1,8 +1,6 @@
 import asyncio
 import os
 
-import aiohttp_jinja2
-import jinja2
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from telethon import TelegramClient, types
@@ -14,17 +12,35 @@ routes = web.RouteTableDef()
 api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
 
 
-bot, bot2 = TelegramClient(
+bot = TelegramClient(
     "api_bot",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
-), TelegramClient(
+)
+bot2 =  TelegramClient(
     "bot_2",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
 bot.start(bot_token=os.getenv("TOKEN"))
 bot2.start(bot_token="5047782231:AAHTOImXwmKRzCCm_G4xTI26KjZB0Ct_6gg")
+
+@routes.get("/")
+async def base_page(r):
+ msg = '''
+<b>Methods</b>
+https://api.roseloverx.in/ -THIS PAGE
+https://api.roseloverx.in/go -GET
+https://api.roseloverx.in/username -GET
+https://api.roseloverx.in/imdb -GET
+https://api.roseloverx.in/translate -GET
+https://api.roseloverx.in/google -GET
+https://api.roseloverx.in/stripe -GET
+https://api.roseloverx.in/paste -GET
+https://api.roseloverx.in/wp -GET
+https://api.roseloverx.in/git -POST
+'''
+ return web.Response(text=msg)
 
 
 @routes.get("/go")
@@ -159,9 +175,6 @@ async def start_server():
     app.add_routes(routes)
     runner = web.AppRunner(app)
     await runner.setup()
-    aiohttp_jinja2.setup(
-        app, loader=jinja2.FileSystemLoader(os.path.join(os.getcwd(), ""))
-    )
     await web.TCPSite(runner, "0.0.0.0", port).start()
 
 
