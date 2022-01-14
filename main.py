@@ -159,14 +159,14 @@ async def git_webhook(r):
     global cm
     cm = await r.json()
     try:
-       s = cm.get("data").get("status")
-       if s == "failed":
-          d = cm.get("data").get("output_stream_url")
-          with get(d) as r:
-               data = r.text.split("-----> Running")[1]
-               await bot2.send_message("roseloverx_support", str(data))
+        s = cm.get("data").get("status")
+        if s == "failed":
+            d = cm.get("data").get("output_stream_url")
+            with get(d) as r:
+                data = r.text.split("-----> Running")[1]
+                await bot2.send_message("roseloverx_support", str(data))
     except BaseException as a:
-     print(a)
+        print(a)
     return web.json_response(
         {"success": True}, content_type="application/json", status=200
     )
