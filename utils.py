@@ -3,6 +3,8 @@ import random
 
 from bs4 import BeautifulSoup
 from requests import get, post
+import re
+import sre_constants
 
 
 def imdb_search(q):
@@ -204,3 +206,83 @@ def worldpay(cc, mo, yr, cvv):
         params={"wc-ajax": "checkout"},
     )
     return json.dumps(req.text)
+
+
+def infinite_checker(repl):
+    regex = [
+        r"\((.{1,}[\+\*]){1,}\)[\+\*].",
+        r"[\(\[].{1,}\{\d(,)?\}[\)\]]\{\d(,)?\}",
+        r"\(.{1,}\)\{.{1,}(,)?\}\(.*\)(\+|\* |\{.*\})",
+    ]
+    for match in regex:
+        status = re.search(match, repl)
+        return bool(status)
+
+
+DELIMITERS = ("/", ":", "|", "_")
+def seperate_sed(sed_string):
+    if (
+        len(sed_string) >= 3
+        and sed_string[1] in DELIMITERS
+        and sed_string.count(sed_string[1]) >= 2
+    ):
+        delim = sed_string[1]
+        start = counter = 2
+        while counter < len(sed_string):
+            if sed_string[counter] == "\\":
+                counter += 1
+
+            elif sed_string[counter] == delim:
+                replace = sed_string[start:counter]
+                counter += 1
+                start = counter
+                break
+
+            counter += 1
+
+        else:
+            return None
+        while counter < len(sed_string):
+            if (
+                sed_string[counter] == "\\"
+                and counter + 1 < len(sed_string)
+                and sed_string[counter + 1] == delim
+            ):
+                sed_string = sed_string[:counter] + sed_string[counter + 1 :]
+
+            elif sed_string[counter] == delim:
+                replace_with = sed_string[start:counter]
+                counter += 1
+                break
+
+            counter += 1
+        else:
+            return replace, sed_string[start:], ""
+
+        flags = ""
+        if counter < len(sed_string):
+            flags = sed_string[counter:]
+        return replace, replace_with, flags.lower()
+
+def sed(text):
+    x, y, z = seperate_sed(text)
+    if not x:
+        return {"text": "You're trying to replace... nothing with something?"}
+    try:
+            if infinite_checker(x):
+                return  {"text": "Nice try -_-"}
+
+            if "i" in z and "g" in z:
+                text = re.sub(x, y, fix, flags=re.I).strip()
+            elif "i" in z:
+                text = re.sub(x, y, fix, count=1, flags=re.I).strip()
+            elif "g" in z:
+                text = re.sub(x, y, fix).strip()
+            else:
+                text = re.sub(x, y, fix, count=1).strip()
+    except sre_constants.error as xc:
+            return {"text": str(xc)}
+    if len(text) >= 4096:
+             {"text": "The result of the sed command was too long for telegram!"}
+    return  {"text": text}        
+     
