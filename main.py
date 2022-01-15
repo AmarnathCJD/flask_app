@@ -6,7 +6,7 @@ from google_translate_py import AsyncTranslator
 from requests import get
 from telethon import TelegramClient, types
 
-from utils import go_eval, google_search, imdb_search, paste, stripe_check, worldpay
+from utils import go_eval, google_search, imdb_search, paste, stripe_check, worldpay, sed
 
 routes = web.RouteTableDef()
 
@@ -188,11 +188,19 @@ async def wordlpey_(r):
         cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
     except KeyError as ky:
         return web.json_response(
-            {"error": str(ky)}, content_type="application/json", status=200
+            {"error": str(ky)}, content_type="application/json", status=403
         )
     resp = worldpay(cc, mo, yr, cvv)
     return web.json_response(resp, content_type="application/json", status=200)
 
+@roues.get("/sed")
+async def sed_py_(r):
+    d = r.rel_url.query.get("text")
+    if not d:
+        return 
+    sad = sed(d)
+    return web.json_response(sad, content_type="application/json", status=200)
+    
 
 async def start_server():
     port = int(os.environ.get("PORT"))
