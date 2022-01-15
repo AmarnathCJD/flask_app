@@ -202,7 +202,7 @@ async def wordlpey_(r):
     return web.json_response(resp, content_type="application/json", status=200)
 
 
-@roues.get("/sed")
+@routes.get("/sed")
 async def sed_py_(r):
     d = r.rel_url.query.get("text")
     ed = r.rel_url.query.get("sed")
