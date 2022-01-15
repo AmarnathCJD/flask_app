@@ -1,10 +1,10 @@
 import json
 import random
+import re
+import sre_constants
 
 from bs4 import BeautifulSoup
 from requests import get, post
-import re
-import sre_constants
 
 
 def imdb_search(q):
@@ -220,6 +220,8 @@ def infinite_checker(repl):
 
 
 DELIMITERS = ("/", ":", "|", "_")
+
+
 def seperate_sed(sed_string):
     if (
         len(sed_string) >= 3
@@ -264,25 +266,25 @@ def seperate_sed(sed_string):
             flags = sed_string[counter:]
         return replace, replace_with, flags.lower()
 
+
 def sed(text):
     x, y, z = seperate_sed(text)
     if not x:
         return {"text": "You're trying to replace... nothing with something?"}
     try:
-            if infinite_checker(x):
-                return  {"text": "Nice try -_-"}
+        if infinite_checker(x):
+            return {"text": "Nice try -_-"}
 
-            if "i" in z and "g" in z:
-                text = re.sub(x, y, fix, flags=re.I).strip()
-            elif "i" in z:
-                text = re.sub(x, y, fix, count=1, flags=re.I).strip()
-            elif "g" in z:
-                text = re.sub(x, y, fix).strip()
-            else:
-                text = re.sub(x, y, fix, count=1).strip()
+        if "i" in z and "g" in z:
+            text = re.sub(x, y, fix, flags=re.I).strip()
+        elif "i" in z:
+            text = re.sub(x, y, fix, count=1, flags=re.I).strip()
+        elif "g" in z:
+            text = re.sub(x, y, fix).strip()
+        else:
+            text = re.sub(x, y, fix, count=1).strip()
     except sre_constants.error as xc:
-            return {"text": str(xc)}
+        return {"text": str(xc)}
     if len(text) >= 4096:
-             {"text": "The result of the sed command was too long for telegram!"}
-    return  {"text": text}        
-     
+        {"text": "The result of the sed command was too long for telegram!"}
+    return {"text": text}
