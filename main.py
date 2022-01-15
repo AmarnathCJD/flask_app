@@ -207,7 +207,9 @@ async def sed_py_(r):
     d = r.rel_url.query["text"]
     ed = r.rel_url.query["sed"]
     if not d:
-        return web.json_response({"err": "error"}, content_type="application/json", status=200)
+        return web.json_response(
+            {"err": "error"}, content_type="application/json", status=200
+        )
     sad = sed(d, ed)
     return web.json_response(sad, content_type="application/json", status=200)
 
