@@ -175,7 +175,8 @@ async def git_webhook(r):
                 data = r.text.split("#")[1]
                 await bot.send_message(
                     "roseloverx_support",
-                    "<b><u>Heroku Build Failed</u></b>, \n<b>LOGS:</b> \n" + str(data), parse_mode="md"
+                    "<b><u>Heroku Build Failed</u></b>, \n<b>LOGS:</b> \n" + str(data),
+                    parse_mode="md",
                 )
     except BaseException as a:
         print(a)
