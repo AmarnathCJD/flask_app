@@ -138,6 +138,7 @@ def worldpay(cc, mo, yr, cvv):
             "clientKey": "L_C_11b32364-dca9-4f76-8ae6-4f42cca470ca",
         },
     ).json()
+    print(r)
     if r.get("httpStatusCode") and r["httpStatusCode"] == 400:
         return {"error": "Invaid payment details"}
     check_api = "https://brewyork.co.uk/?wc-ajax=checkout"
