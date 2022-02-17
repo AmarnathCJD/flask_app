@@ -32,7 +32,7 @@ bot2 = TelegramClient(
     os.getenv("API_HASH"),
 )
 bot.start(bot_token=os.getenv("TOKEN"))
-bot2.start(bot_token="5047782231:AAHTOImXwmKRzCCm_G4xTI26KjZB0Ct_6gg")
+bot2.start(bot_token=os.getenv("TOKEN_2"))
 
 
 @routes.get("/")
