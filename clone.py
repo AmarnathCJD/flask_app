@@ -1,4 +1,6 @@
 from telethon import TelegramClient
+import logging
+
 
 API_KEY = 6
 API_HASH = ""
