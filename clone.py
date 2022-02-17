@@ -6,6 +6,9 @@ API_KEY = 6
 API_HASH = ""
 
 TOKENS = []
+
+main_bot = TelegramClient("main", API_KEY, API_HASH).start(bot_token=getenv("BOT_TOKEN"))
+
 count = 0
 
 
@@ -29,7 +32,7 @@ for tok in TOKENS:
     b = TelegramClient(str(count), API_KEY, API_HASH)
     b.start(bot_token=tok)
     count += 1
-    b.run_until_completed(getme(client))
+    b.run_until_complete(getme(client))
     print("Started " + BOTS[b].first_name)
 
 
@@ -51,7 +54,7 @@ def cmd(**args):
 async def add_new_instance(tok):
     b = TelegramClient(str(count), API_KEY, API_HASH)
     b.start(bot_token=tok)
-    b.run_until_completed(getme(client))
+    b.run_until_complete(getme(client))
     print("Started " + BOTS[b].first_name)
     for x, y in cmnds:
 
@@ -77,3 +80,5 @@ async def add_tok(e):
 @cmd(pattern="^/start")
 async def _start(e):
     await e.reply("Test clone bot named as {}".format(get_name(e.client)))
+
+main_bot.run_until_disconnected()
