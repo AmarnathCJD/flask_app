@@ -1,7 +1,7 @@
 import asyncio
 import os
 
-os.system("youtube-search-python")
+os.system("pip3 install youtube-search-python")
 
 from aiohttp import web
 from google_translate_py import AsyncTranslator
