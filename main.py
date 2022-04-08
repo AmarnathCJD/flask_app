@@ -14,7 +14,7 @@ from utils import (
     sed,
     stripe_check,
     worldpay,
-    yt_search
+    yt_search,
 )
 
 routes = web.RouteTableDef()
@@ -198,14 +198,16 @@ async def sed_py_(r):
     sad = sed(d, ed)
     return web.json_response(sad, content_type="application/json", status=200)
 
+
 @routes.get("/youtube")
 async def yt_s(r):
- try:
-   query = r.rel_url.query["q"]
- except KeyError:
-   return web.json_response({"error": "q param not found"}, status=501)
- search = yt_search(q, 10)
- return web.json_response(search, status=200)
+    try:
+        r.rel_url.query["q"]
+    except KeyError:
+        return web.json_response({"error": "q param not found"}, status=501)
+    search = yt_search(q, 10)
+    return web.json_response(search, status=200)
+
 
 async def start_server():
     port = int(os.environ.get("PORT"))
