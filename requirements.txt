@@ -4,4 +4,3 @@ aiohttp
 bs4
 google-translate.py
 selenium
-youtube-search-python
