@@ -168,7 +168,7 @@ async def sed_py_(r):
 @routes.get("/youtube")
 async def yt_s(r):
     try:
-        r.rel_url.query["q"]
+        q = r.rel_url.query["q"]
     except KeyError:
         return web.json_response({"error": "q param not found"}, status=501)
     search = yt_search(q, 10)
