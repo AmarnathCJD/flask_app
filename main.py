@@ -14,44 +14,28 @@ from utils import (
     sed,
     stripe_check,
     worldpay,
+    yt_search
 )
 
 routes = web.RouteTableDef()
 
-api_key_demo = "e860abbe-0fe5-11ec-bb0a-36f5724811b8"
-
-
 bot = TelegramClient(
-    "api_bot",
+    "null",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
-bot2 = TelegramClient(
-    "bot_2",
+api = TelegramClient(
+    "api",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
 bot.start(bot_token=os.getenv("TOKEN"))
-bot2.start(bot_token=os.getenv("TOKEN_2"))
+api.start(bot_token=os.getenv("BOT_TOKEN"))
 
 
 @routes.get("/")
 async def base_page(r):
-    msg = """
-<b>Methods</b>
-\n<h6><a href='https://api.roseloverx.in/'>https://api.roseloverx.in/</a> <b>-THIS PAGE</b>
-\nhttps://api.roseloverx.in/go <b>-GET</b>
-\nhttps://api.roseloverx.in/username <b>-GET</b>
-\nhttps://api.roseloverx.in/imdb <b>-GET</b>
-\nhttps://api.roseloverx.in/translate <b>-GET</b>
-\nhttps://api.roseloverx.in/google <b>-GET</b>
-\nhttps://api.roseloverx.in/stripe <b>-GET</b>
-\nhttps://api.roseloverx.in/paste <b>-GET</b>
-\nhttps://api.roseloverx.in/wp <b>-GET</b>
-\nhttps://api.roseloverx.in/git <b>-POST</b></h6>
-
-\n\n<b>© RoseloverX™ 2021-22</b>
-"""
+    msg = "soon"
     return web.Response(text=msg, content_type="text/html")
 
 
@@ -73,7 +57,7 @@ async def go_ev(r):
 async def uu(r):
     await r.post()
     try:
-        u = await bot2.get_entity(r.rel_url.query["username"])
+        u = await api.get_entity(r.rel_url.query["username"])
         if isinstance(u, types.User):
             dc_id = u.photo.dc_id if u.photo else None
             return_data = {
@@ -214,6 +198,14 @@ async def sed_py_(r):
     sad = sed(d, ed)
     return web.json_response(sad, content_type="application/json", status=200)
 
+@routes.get("/youtube")
+async def yt_s(r):
+ try:
+   query = r.rel_url.query["q"]
+ except KeyError:
+   return web.json_response({"error": "q param not found"}, status=501)
+ search = yt_search(q, 10)
+ return web.json_response(search, status=200)
 
 async def start_server():
     port = int(os.environ.get("PORT"))
