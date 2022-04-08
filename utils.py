@@ -1,11 +1,11 @@
-import json
 import random
 import re
 import sre_constants
 
 from bs4 import BeautifulSoup
 from requests import get, post
-from youtubesearchpython import VideosSearch as vs 
+from youtubesearchpython import VideosSearch as vs
+
 
 def imdb_search(q):
     r = get(f"https://www.imdb.com/find?q={q}&ref_=nv_sr_sm")
@@ -110,8 +110,6 @@ def paste(text):
         return {"error": "nekobin host down"}
 
 
-
-
 def infinite_checker(repl):
     regex = [
         r"\((.{1,}[\+\*]){1,}\)[\+\*].",
@@ -193,9 +191,10 @@ def sed(fix, text):
         {"text": "The result of the sed command was too long for telegram!"}
     return {"text": fix}
 
+
 def yt_search(query: str, limit: int):
- try:
+    try:
         v = vs(q, limit=1).result()["result"]
- except (IndexError, KeyError, TypeError):
-   return {"error": "No songs found!"}
- return v
+    except (IndexError, KeyError, TypeError):
+        return {"error": "No songs found!"}
+    return v
