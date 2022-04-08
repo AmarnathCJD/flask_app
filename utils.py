@@ -194,7 +194,7 @@ def sed(fix, text):
 
 def yt_search(query: str, limit: int):
     try:
-        v = vs(q, limit=1).result()["result"]
+        v = vs(query, limit=limit).result()["result"]
     except (IndexError, KeyError, TypeError):
         return {"error": "No songs found!"}
     return v
