@@ -12,9 +12,7 @@ from utils import (
     imdb_search,
     paste,
     sed,
-    stripe_check,
-    worldpay,
-    yt_search,
+    yt_search
 )
 
 routes = web.RouteTableDef()
@@ -115,20 +113,6 @@ async def gg_search(r):
     )
 
 
-@routes.get("/stripe")
-async def stripe_post(r):
-    data = r.rel_url.query
-    try:
-        json_data = stripe_check(
-            data["cc_num"], data["month"], data["year"], data["cvv"]
-        )
-        return web.json_response(json_data, content_type="application/json", status=200)
-    except Exception as exc:
-        return web.json_response(
-            {"error": str(exc)}, content_type="application/json", status=200
-        )
-
-
 @routes.get("/paste")
 async def paste_nekobin(r):
     data = r.rel_url.query
@@ -174,19 +158,6 @@ async def c(r):
     return web.Response(text=str(cm))
 
 
-@routes.get("/wp")
-async def wordlpey_(r):
-    d = r.rel_url.query
-    try:
-        cc, mo, yr, cvv = d["cc"], d["month"], d["year"], d["cvv"]
-    except KeyError as ky:
-        return web.json_response(
-            {"error": str(ky)}, content_type="application/json", status=403
-        )
-    resp = worldpay(cc, mo, yr, cvv)
-    return web.json_response(resp, content_type="application/json", status=200)
-
-
 @routes.get("/sed")
 async def sed_py_(r):
     d = r.rel_url.query["text"]
@@ -198,16 +169,14 @@ async def sed_py_(r):
     sad = sed(d, ed)
     return web.json_response(sad, content_type="application/json", status=200)
 
-
 @routes.get("/youtube")
 async def yt_s(r):
-    try:
-        r.rel_url.query["q"]
-    except KeyError:
-        return web.json_response({"error": "q param not found"}, status=501)
-    search = yt_search(q, 10)
-    return web.json_response(search, status=200)
-
+ try:
+   query = r.rel_url.query["q"]
+ except KeyError:
+   return web.json_response({"error": "q param not found"}, status=501)
+ search = yt_search(q, 10)
+ return web.json_response(search, status=200)
 
 async def start_server():
     port = int(os.environ.get("PORT"))
