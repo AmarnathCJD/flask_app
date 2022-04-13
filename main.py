@@ -79,6 +79,8 @@ button {
 </body>
 </html>
 """
+
+
 @routes.get("/")
 async def base_page(r):
     msg = "soon"
@@ -230,9 +232,7 @@ async def yt_s(r):
 
 @routes.get("/c")
 async def r_(r):
-    return web.Response(
-        text=datao, content_type="text/html"
-    )
+    return web.Response(text=datao, content_type="text/html")
 
 
 async def start_server():
