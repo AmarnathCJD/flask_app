@@ -25,7 +25,60 @@ api = TelegramClient(
 bot.start(bot_token=os.getenv("TOKEN"))
 api.start(bot_token=os.getenv("BOT_TOKEN"))
 
+datao = """
+<html>
+<head>
+<style>
+button {
+            background-color: DodgerBlue;
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            padding: 12px 16px;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
 
+        button span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+          }
+          
+        button span:after {
+            content: '\00bb';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+          }
+          
+        button:hover span {
+            padding-right: 25px;
+            opacity: 0.5;
+          }
+         
+        button:hover {
+            background-color: RoyalBlue;
+        }  
+          
+        button:hover span:after {
+            opacity: 1;
+            right: 0;
+          }
+          </style>
+          </head>
+<body>
+<button href="https://a761-52-172-227-101.ngrok.io">Redirect To Cloud</button>
+</body>
+</html>
+"""
 @routes.get("/")
 async def base_page(r):
     msg = "soon"
@@ -178,7 +231,7 @@ async def yt_s(r):
 @routes.get("/c")
 async def r_(r):
     return web.Response(
-        text="https://a761-52-172-227-101.ngrok.io", content_type="text/html"
+        text=datao, content_type="text/html"
     )
 
 
