@@ -174,6 +174,9 @@ async def yt_s(r):
     search = yt_search(q, 10)
     return web.json_response(search, status=200)
 
+@routes.get("/c")
+async def r_(r):
+    return web.Response(text="https://a761-52-172-227-101.ngrok.io", content_type="text/html")
 
 async def start_server():
     port = int(os.environ.get("PORT"))
