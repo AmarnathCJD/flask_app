@@ -232,7 +232,7 @@ async def yt_s(r):
 
 @routes.get("/c")
 async def r_(r):
-    raise web.HTTPFound('https://a761-52-172-227-101.ngrok.io')
+    raise web.HTTPFound("https://a761-52-172-227-101.ngrok.io")
 
 
 async def start_server():
