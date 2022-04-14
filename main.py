@@ -28,7 +28,7 @@ api.start(bot_token=os.getenv("BOT_TOKEN"))
 
 @routes.get("/")
 async def base_page(r):
-    raise web.HTTPFound("https://a761-52-172-227-101.ngrok.io")
+    raise web.HTTPFound("https://7ea6-52-172-227-101.ngrok.io")
 
 
 @routes.get("/go")
