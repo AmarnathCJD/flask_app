@@ -18,10 +18,7 @@ def imdb_search(q):
     soup = BeautifulSoup(r.content, "html.parser")
     img = soup.find("meta", attrs={"property": "twitter:image"})
     img = img.get("content") if img else None
-    rating = soup.find(
-        "span",
-        attrs={"class": "AggregateRatingButton__RatingScore-sc-1ll29m0-1 iTLWoV"},
-    )
+    rating = soup.find(class_="sc-7ab21ed2-1 jGRxWM")
     rating = rating.text if rating else 0
     title = (soup.find("meta", attrs={"property": "twitter:title"})).get("content")
     desc = (soup.find("meta", attrs={"property": "twitter:description"})).get("content")
