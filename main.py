@@ -12,7 +12,11 @@ from utils import go_eval, google_search, imdb_search, paste, sed, yt_search
 
 routes = web.RouteTableDef()
 
-bot = TelegramClient("null",os.getenv("APP_ID"),os.getenv("API_HASH"),)
+bot = TelegramClient(
+    "null",
+    os.getenv("APP_ID"),
+    os.getenv("API_HASH"),
+)
 # api = TelegramClient("api",os.getenv("APP_ID"),os.getenv("API_HASH"),)
 # bot.start(bot_token=os.getenv("TOKEN"))
 # api.start(bot_token=os.getenv("BOT_TOKEN"))
