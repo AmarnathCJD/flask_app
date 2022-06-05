@@ -1,8 +1,6 @@
 import asyncio
 import os
-
-os.system("pip3 install youtube-search-python")
-
+from telethon import TelegramClient 
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from requests import get
@@ -12,15 +10,14 @@ from utils import go_eval, google_search, imdb_search, paste, sed, yt_search
 
 routes = web.RouteTableDef()
 
-bot = TelegramClient(
-    "null",
-    os.getenv("APP_ID"),
-    os.getenv("API_HASH"),
-)
-# api = TelegramClient("api",os.getenv("APP_ID"),os.getenv("API_HASH"),)
-# bot.start(bot_token=os.getenv("TOKEN"))
-# api.start(bot_token=os.getenv("BOT_TOKEN"))
+API_KEY = os.getenv("API_KEY", 6)
+API_HASH = os.getenv("API_HASH", "12345")
 
+bot = TelegramClient (None, API_KEY, API_HASH)
+try:
+  bot.start(bot_token='')
+except:
+  pass
 
 @routes.get("/")
 async def base_page(r):
