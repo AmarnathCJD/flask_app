@@ -178,7 +178,7 @@ async def yt_s(r):
 
 
 async def start_server():
-    port = int(os.environ.get("PORT"))
+    port = 5400
     app = web.Application()
     app.add_routes(routes)
     runner = web.AppRunner(app)
