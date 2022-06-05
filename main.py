@@ -182,4 +182,3 @@ async def start_server():
 # Server Startup
 asyncio.get_event_loop().run_until_complete(start_server())
 print("Web Server Started.")
-bot.run_until_disconnected()
