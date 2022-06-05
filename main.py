@@ -1,10 +1,10 @@
 import asyncio
 import os
-from telethon import TelegramClient 
+
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from requests import get
-from telethon import types
+from telethon import TelegramClient, types
 
 from utils import go_eval, google_search, imdb_search, paste, sed, yt_search
 
@@ -13,11 +13,12 @@ routes = web.RouteTableDef()
 API_KEY = os.getenv("API_KEY", 6)
 API_HASH = os.getenv("API_HASH", "12345")
 
-bot = TelegramClient (None, API_KEY, API_HASH)
+bot = TelegramClient(None, API_KEY, API_HASH)
 try:
-  bot.start(bot_token='')
+    bot.start(bot_token="")
 except:
-  pass
+    pass
+
 
 @routes.get("/")
 async def base_page(r):
