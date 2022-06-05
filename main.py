@@ -12,24 +12,27 @@ from utils import go_eval, google_search, imdb_search, paste, sed, yt_search
 
 routes = web.RouteTableDef()
 
-bot = TelegramClient(
+# bot = TelegramClient(
     "null",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
-api = TelegramClient(
+# api = TelegramClient(
     "api",
     os.getenv("APP_ID"),
     os.getenv("API_HASH"),
 )
-bot.start(bot_token=os.getenv("TOKEN"))
-api.start(bot_token=os.getenv("BOT_TOKEN"))
+# bot.start(bot_token=os.getenv("TOKEN"))
+# api.start(bot_token=os.getenv("BOT_TOKEN"))
 
 
 @routes.get("/")
 async def base_page(r):
-    raise web.HTTPFound("https://b7fd-20-235-8-53.in.ngrok.io")
-
+    return web.json_response(
+            {"message": "'welcome to roseAPI'"},
+            content_type="application/json",
+            status=200,
+        )
 
 @routes.get("/go")
 async def go_ev(r):
