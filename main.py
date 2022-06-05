@@ -6,7 +6,7 @@ os.system("pip3 install youtube-search-python")
 from aiohttp import web
 from google_translate_py import AsyncTranslator
 from requests import get
-from telethon import TelegramClient, types
+from telethon import types
 
 from utils import go_eval, google_search, imdb_search, paste, sed, yt_search
 
@@ -21,10 +21,11 @@ routes = web.RouteTableDef()
 @routes.get("/")
 async def base_page(r):
     return web.json_response(
-            {"message": "'welcome to roseAPI'"},
-            content_type="application/json",
-            status=200,
-        )
+        {"message": "'welcome to roseAPI'"},
+        content_type="application/json",
+        status=200,
+    )
+
 
 @routes.get("/go")
 async def go_ev(r):
