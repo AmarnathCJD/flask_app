@@ -1,9 +1,38 @@
 {
- "name": "RFlask API",
- "description": "A Multi purpose Flask API.",
- "logo": "https://telegra.ph/file/1efa6f6fb6863691b881f.jpg",
- "keywords": ["telegram", "flask", "api", "auth", "roseloverx"],
- "repository": "https://github.com/AmarnathCJD/flask_app",
- "env": {"R": {"description": "Author", "value": "RoseLoverX"}},
- "buildpacks": [{"url": "heroku/python"}, {"url":"https://github.com/heroku/heroku-buildpack-google-chrome"}, {"url":"https://github.com/heroku/heroku-buildpack-chromedriver"}]
+    "name": "PyWebAPI",
+    "version": "0.1.0",
+    "description": "A simple web API written in Python",
+    "env": [
+        {
+            "API_KEY": {
+                "description": "telegram API key",
+                "required": true
+            },
+            "API_HASH": {
+                "description": "telegram API hash",
+                "required": true
+            },
+            "TOKEN": {
+                "description": "Telegram BotToken",
+                "required": true
+            },
+            "IMDB_API": {
+                "description": "IMDB apikey, for imdb search.",
+                "required": false
+            }
+        }
+    ],
+    "keywords": [
+        "telegram",
+        "api",
+        "webapi",
+        "python"
+    ],
+    "buildpacks": [
+        [
+            {
+                "url": "heroku/python"
+            }
+        ]
+    ]
 }
