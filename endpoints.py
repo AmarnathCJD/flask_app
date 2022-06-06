@@ -1,5 +1,6 @@
 from aiohttp.web import RouteTableDef, json_response
-from parsers import translate, write_error, google_search, imdb_search, youtube_search
+
+from parsers import google_search, imdb_search, translate, write_error, youtube_search
 
 routes = RouteTableDef()
 
@@ -53,13 +54,15 @@ async def _paste_nekobin(request):
 
 @routes.get("/")
 async def _root(request):
-    return json_response({
-        "endpoints": {
-            "google": "/google",
-            "imdb": "/imdb",
-            "youtube": "/youtube",
-            "translate": "/translate",
-            "paste": "/paste",
-        },
-        "message": "welcome to the api",
-    })
+    return json_response(
+        {
+            "endpoints": {
+                "google": "/google",
+                "imdb": "/imdb",
+                "youtube": "/youtube",
+                "translate": "/translate",
+                "paste": "/paste",
+            },
+            "message": "welcome to the api",
+        }
+    )

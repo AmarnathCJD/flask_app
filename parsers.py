@@ -1,6 +1,6 @@
 import aiohttp
-from bs4 import BeautifulSoup
 from aiohttp.web import json_response
+from bs4 import BeautifulSoup
 
 from config import IMDB_API
 
@@ -14,7 +14,7 @@ async def imdb_search(query):
         "api_key": IMDB_API,
         "query": query,
         "language": "en-US",
-        "include_adult": "true"
+        "include_adult": "true",
     }
     async with aiohttp.ClientSession() as session:
         async with session.get(url, params=params) as resp:
@@ -34,7 +34,9 @@ async def google_search(query):
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36"
     }
     async with aiohttp.ClientSession() as session:
-        async with session.get(url, params=params, allow_redirects=True, headers=headers) as resp:
+        async with session.get(
+            url, params=params, allow_redirects=True, headers=headers
+        ) as resp:
             return await parse_google_response(await resp.text())
 
 
@@ -51,7 +53,7 @@ async def parse_google_response(response: str):
                 "title": title.text,
                 "cite": cite.text,
                 "description": description.text,
-                "url": title.findParent("a", href=True)["href"]
+                "url": title.findParent("a", href=True)["href"],
             }
         )
     return {"success": True, "results": results}
@@ -60,21 +62,61 @@ async def parse_google_response(response: str):
 async def parse_youtube_results(response):
     data = []
     estimatedResults = 0
-    for result in response.get("contents", {}).get("twoColumnSearchResultsRenderer", {}).get("primaryContents", {}).get("sectionListRenderer", {}).get("contents", [])[0].get("itemSectionRenderer", {}).get("contents", []):
+    for result in (
+        response.get("contents", {})
+        .get("twoColumnSearchResultsRenderer", {})
+        .get("primaryContents", {})
+        .get("sectionListRenderer", {})
+        .get("contents", [])[0]
+        .get("itemSectionRenderer", {})
+        .get("contents", [])
+    ):
         if result.get("videoRenderer", {}):
             estimatedResults += 1
             data.append(
                 {
-                    "title": result.get("videoRenderer", {}).get("title", {}).get("runs", [{}])[0].get("text", ""),
-                    "url": "https://www.youtube.com/watch?v=" + result.get("videoRenderer", {}).get("videoId", ""),
-                    "description": ''.join([x.get("text", "") for x in result.get("videoRenderer", {}).get("detailedMetadataSnippets", [{}])[0].get("snippetText", {}).get("runs", [{}])]),
-                    "thumbnail": result.get("videoRenderer", {}).get("thumbnail", {}).get("thumbnails", [{}])[0].get("url", ""),
-                    "published": result.get("videoRenderer", {}).get("publishedTimeText", {}).get("simpleText", ""),
-                    "channel": result.get("videoRenderer", {}).get("ownerText", {}).get("runs", [{}])[0].get("text", ""),
-                    "channelUrl": "https://www.youtube.com/channel/" + result.get("videoRenderer", {}).get("ownerText", {}).get("runs", [{}])[0].get("navigationEndpoint", {}).get("browseEndpoint", {}).get("browseEndpointId", ""),
-                    "channelThumbnail": "https://i.ytimg.com/vi/" + result.get("videoRenderer", {}).get("videoId", "") + "/hqdefault.jpg",
-                    "duration": result.get("videoRenderer", {}).get("lengthText", {}).get("simpleText", ""),
-                    "viewCount": result.get("videoRenderer", {}).get("viewCountText", {}).get("simpleText", ""),
+                    "title": result.get("videoRenderer", {})
+                    .get("title", {})
+                    .get("runs", [{}])[0]
+                    .get("text", ""),
+                    "url": "https://www.youtube.com/watch?v="
+                    + result.get("videoRenderer", {}).get("videoId", ""),
+                    "description": "".join(
+                        [
+                            x.get("text", "")
+                            for x in result.get("videoRenderer", {})
+                            .get("detailedMetadataSnippets", [{}])[0]
+                            .get("snippetText", {})
+                            .get("runs", [{}])
+                        ]
+                    ),
+                    "thumbnail": result.get("videoRenderer", {})
+                    .get("thumbnail", {})
+                    .get("thumbnails", [{}])[0]
+                    .get("url", ""),
+                    "published": result.get("videoRenderer", {})
+                    .get("publishedTimeText", {})
+                    .get("simpleText", ""),
+                    "channel": result.get("videoRenderer", {})
+                    .get("ownerText", {})
+                    .get("runs", [{}])[0]
+                    .get("text", ""),
+                    "channelUrl": "https://www.youtube.com/channel/"
+                    + result.get("videoRenderer", {})
+                    .get("ownerText", {})
+                    .get("runs", [{}])[0]
+                    .get("navigationEndpoint", {})
+                    .get("browseEndpoint", {})
+                    .get("browseEndpointId", ""),
+                    "channelThumbnail": "https://i.ytimg.com/vi/"
+                    + result.get("videoRenderer", {}).get("videoId", "")
+                    + "/hqdefault.jpg",
+                    "duration": result.get("videoRenderer", {})
+                    .get("lengthText", {})
+                    .get("simpleText", ""),
+                    "viewCount": result.get("videoRenderer", {})
+                    .get("viewCountText", {})
+                    .get("simpleText", ""),
                     "id": result.get("videoRenderer", {}).get("videoId", ""),
                 }
             )
@@ -106,17 +148,17 @@ async def youtube_search(query: str):
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36",
     }
     data = {
-        'context': {
-            'client': {
-                'clientName': 'WEB',
-                'clientVersion': '2.20220602.00.00',
+        "context": {
+            "client": {
+                "clientName": "WEB",
+                "clientVersion": "2.20220602.00.00",
                 "newVisitorCookie": True,
             },
             "user": {
                 "lockedSafetyMode": False,
-            }
+            },
         },
-        'query': query,
+        "query": query,
     }
     async with aiohttp.ClientSession() as session:
         async with session.post(url, params=params, headers=headers, json=data) as resp:
@@ -130,7 +172,9 @@ async def write_error(error):
     return json_response({"error": error, "success": False}, status=500, reason=error)
 
 
-async def translate(query: str, language: str = "en-US", source_language: str = "en-US"):
+async def translate(
+    query: str, language: str = "en-US", source_language: str = "en-US"
+):
     """
     Translate query
     """
@@ -152,4 +196,3 @@ async def translate(query: str, language: str = "en-US", source_language: str = 
                 "success": True,
             }
             return result
-
